@@ -1,0 +1,10 @@
+-- 계정 삭제
+drop user healthy cascade ;
+
+-- 계정 생성
+create user healthy identified by oracle account unlock ;
+
+alter user healthy default tablespace users ;
+
+--권한 부여
+grant connect, resource to healthy ;

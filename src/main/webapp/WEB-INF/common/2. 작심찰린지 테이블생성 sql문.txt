@@ -1,0 +1,476 @@
+--------------------------------------------------------------------------------
+-- 사용자
+--------------------------------------------------------------------------------
+-- 테이블 삭제
+--drop table member purge;
+
+-- 테이블 생성
+create table member(
+    email varchar2(100) primary key,
+    password varchar2(30) not null,
+    name varchar2(30) not null,
+    brith varchar2(30) not null,
+    gender number check(gender in (1,2)),
+    nickname varchar2(30) not null,
+    photo varchar2(100),
+    height number(4,1),
+    weight number(4,1),
+    authstatus varchar2(30) default 0,
+    authkey varchar2(100)
+);
+
+--조회
+--select * from member;
+
+--------------------------------------------------------------------------------
+-- 커뮤니티 게시판
+--------------------------------------------------------------------------------
+-- 테이블 삭제
+--drop table co_board purge;
+
+-- 시퀀스 생성
+create sequence co_seq;
+
+-- 테이블 생성
+create table co_board(
+    co_seq number primary key,
+    email varchar2(100) not null,
+    category varchar2(30) not null,
+    SUBJECT varchar2(30) not null,
+    CONTENT varchar2(30) not null,
+    readhit number default 0,
+    regdate date default sysdate
+);
+
+--테이블 조회 
+--select * from co_board;
+
+--------------------------------------------------------------------------------
+-- 커뮤니티 게시판
+--------------------------------------------------------------------------------
+-- 테이블 삭제
+--drop table co_comment purge;
+
+-- 시퀀스 생성
+create sequence b_cnum;
+
+-- 테이블 생성
+create table co_comment(
+    b_CNUM number primary key,
+    co_seq number,
+    email varchar2(100) not null,
+    CONTENT varchar2(1000),
+    REGDATE date default sysdate
+);
+
+-- 테이블 조회
+--select * from co_comment;
+
+--------------------------------------------------------------------------------
+-- 문의 게시판
+--------------------------------------------------------------------------------
+-- 테이블 삭제
+--drop table qna purge;
+
+-- 시퀀스 생성
+create sequence qna_seq;
+
+-- 테이블 생성
+create table qna(
+    qna_seq number primary key,
+    email varchar2(100),
+    title varchar2(100) not null,
+    regdate date default sysdate,
+    readhit number,
+    groupno number
+);
+
+-- 테이블 조회
+--select * from qna;
+
+--------------------------------------------------------------------------------
+-- 챌린지 게시판
+--------------------------------------------------------------------------------
+-- 테이블 삭제
+--drop table challenge purge;
+
+-- 시퀀스 생성
+create sequence ch_seq;
+
+-- 테이블 생성
+create table challenge(
+    ch_seq number primary key,
+    email varchar2(100),
+    category varchar2(30) not null,
+    subject varchar2(30) not null,
+    content varchar2(1000),
+    start_day date not null,
+    end_day date not null,
+    message varchar2(100) not null,
+    count number not null,
+    c_file varchar2(255)
+);
+
+-- 테이블 조회
+--select * from challenge;
+
+--------------------------------------------------------------------------------
+-- 챌린지 코멘트
+--------------------------------------------------------------------------------
+-- 테이블 삭제
+--drop table challenge_comment purge ;
+
+-- 시퀀스 생성
+create sequence cnum;
+
+-- 테이블 생성
+create table challenge_comment(
+    cnum number primary key,
+    ch_seq number,
+    email varchar2(100),
+    content varchar2(1000),
+    regdate date default sysdate
+) ;
+-- 테이블 조회
+-- select * from challenge_comment;
+
+--------------------------------------------------------------------------------
+-- 챌린지 그룹
+--------------------------------------------------------------------------------
+-- 테이블 삭제
+--drop table challenge_group purge;
+
+-- 테이블 생성
+create table challenge_group(
+    ch_seq number,
+    email varchar2(100),
+    review varchar2(1000),
+    primary key(ch_seq, email)
+);
+
+-- 테이블 조회
+--select * from challenge_group;
+
+--------------------------------------------------------------------------------
+-- 챌린지 기록(개인)
+--------------------------------------------------------------------------------
+-- 테이블 삭제
+--drop table challenge_record purge;
+
+-- 시퀀스 생성
+create sequence cr_seq;
+
+-- 테이블 생성
+create table challenge_record(
+    cr_seq number primary key,
+    ch_seq number,
+    email varchar2(100),
+    days varchar2(30) not null,
+    checks varchar2(30),
+    subject varchar2(100),
+    content clob
+);
+
+-- 테이블 조회
+-- select * from challenge_record;
+
+--------------------------------------------------------------------------------
+-- 챌린지 파일
+--------------------------------------------------------------------------------
+-- 테이블 삭제
+--drop table challenge_file purge;
+
+-- 시퀀스 생성
+create sequence filenum;
+
+-- 테이블 생성
+create table challenge_file(
+    filenum number primary key,
+    cr_seq number,
+    o_name varchar2(100),
+    file_name varchar2(100),
+    file_size number
+);
+
+-- 테이블 조회
+--select * from challenge_file;
+
+--------------------------------------------------------------------------------
+-- 스크랩
+--------------------------------------------------------------------------------
+-- 테이블 삭제
+--drop table scrap purge;
+
+-- 시퀀스 생성
+create sequence scr_seq;
+
+-- 테이블 생성
+create table scrap(
+    scr_seq number primary key,
+    co_seq number,
+    email varchar2(100)
+);
+
+-- 테이블 조회
+--select * from scrap;
+
+--------------------------------------------------------------------------------
+-- 커뮤니티 파일
+--------------------------------------------------------------------------------
+-- 테이블 삭제
+--drop table community_file purge;
+
+-- 시퀀스 생성
+create sequence b_filenum;
+
+-- 테이블 생성
+create table community_file(
+    b_filenum number primary key,
+    co_seq number,
+    o_name varchar2(100),
+    file_name varchar2(100),
+    file_size number
+);
+
+-- 테이블 조회
+--select * from community_file;
+
+
+--------------------------------------------------------------------------------
+-- 나의 식품
+--------------------------------------------------------------------------------
+-- 테이블 삭제
+--drop table myfood purge;
+
+-- 시퀀스 생성
+create sequence mf_seq;
+
+-- 테이블 생성
+create table myfood(
+    mf_seq number primary key,
+    email varchar2(100),
+    food_name varchar2(100),
+    serving_wt number,
+    calorie number(4,1),
+    carbohydrate number(4,1),
+    protein number(4,1),
+    fat number(4,1),
+    Na number(4,1)
+);
+
+-- 테이블 조회
+--select * from myfood;
+
+--------------------------------------------------------------------------------
+-- 식사 기록
+--------------------------------------------------------------------------------
+-- 테이블 삭제
+--drop table meal_memory purge;
+
+-- 시퀀스 생성
+create sequence mm_seq;
+
+-- 테이블 생성
+create table meal_memory(
+mm_seq number primary key,
+meal_seq number,
+how number(3,1),
+food_name varchar2(100),
+serving_wt number,
+calorie number(4,1),
+carbohydrate number(4,1),
+protein number(4,1),
+fat number(4,1),
+Na number(4,1)
+);
+
+--테이블 조회
+--select * from meal_memory;
+
+--------------------------------------------------------------------------------
+-- 식사
+--------------------------------------------------------------------------------
+-- 테이블 삭제
+--drop table meal purge;
+
+-- 시퀀스 생성
+create sequence meal_seq;
+
+-- 테이블 생성
+create table meal(
+meal_seq number primary key,
+email varchar2(100) not null,
+regdate date default sysdate,
+time varchar2(30),
+total_calorie number(6,1)
+);
+-- 테이블 조회
+--select * from meal;
+
+
+--------------------------------------------------------------------------------
+-- 운동
+--------------------------------------------------------------------------------
+-- 테이블 삭제
+--drop table exercise purge;
+
+-- 시퀀스 생성
+create sequence ex_seq;
+
+-- 테이블 생성
+create table exercise(
+ex_seq number primary key,
+ename varchar2(100),
+METs number(6,1)
+) ;
+--테이블 조회
+--select * from exercise;
+
+--------------------------------------------------------------------------------
+-- 운동 관계
+--------------------------------------------------------------------------------
+-- 테이블 삭제
+--drop table exercise_relation purge;
+
+-- 테이블 생성
+create table exercise_relation(
+ex_seq number,
+em_seq number,
+how number(3,1),
+primary key (ex_seq, em_seq)
+);
+
+--테이블 조회
+--select * from exercise_relation;
+
+
+--------------------------------------------------------------------------------
+-- 운동 기록
+--------------------------------------------------------------------------------
+-- 테이블 삭제
+--drop table exercise_memory purge;
+
+-- 시퀀스 생성
+create sequence em_seq;
+
+-- 테이블 생성
+create table exercise_memory(
+   em_seq number primary key,
+   email varchar2(100),
+   regdate date default sysdate,
+   total_calorie number(6,2)
+);
+
+-- 테이블 조회
+--select * from exercise_memory;
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--제약 조건(PK-FK 연결)
+
+-- co_board - member
+alter table co_board
+	add constraint co_board_email_fk
+	foreign key (email) references member(email) on delete set null;
+
+-- scrap - co_board
+alter table scrap
+	add constraint scrap_co_seq_fk
+	foreign key (co_seq) references co_board(co_seq) on delete cascade;
+
+-- scrap - member
+alter table scrap
+	add constraint scrap_email_fk
+	foreign key (email) references member(email) on delete cascade;
+
+--  community_file - co_board
+alter table community_file
+	add constraint community_file_co_seq_fk
+	foreign key (co_seq) references co_board(co_seq) on delete cascade;
+    
+-- co_comment - co_board
+alter table co_comment
+	add constraint co_comment_co_seq_fk
+	foreign key (co_seq) references co_board(co_seq) on delete cascade;
+    
+-- co_comment - member
+alter table co_comment
+	add constraint co_comment_email_fk
+	foreign key (email) references member(email) on delete set null;
+
+--meal - member
+alter table meal
+	add constraint meal_email_fk
+	foreign key (email) references member(email) on delete cascade;
+
+--meal_memory - meal
+alter table meal_memory
+	add constraint meal_memory_meal_seq_fk
+	foreign key (meal_seq) references meal(meal_seq) on delete cascade;   
+
+--favorite_food - email
+alter table myfood
+	add constraint myfood_email_fk
+	foreign key (email) references myfood(email) on delete cascade;
+
+--exercise_memory - member
+alter table exercise_memory
+	add constraint exercise_memory_email_fk
+	foreign key (email) references member(email) on delete cascade;
+
+--exercise_relation - exercise_memory
+alter table exercise_relation
+	add constraint exercise_relation_em_seq_fk
+	foreign key (em_seq) references exercise_memory(em_seq) on delete cascade;
+    
+--exercise_relation - exercise
+alter table exercise_relation
+	add constraint exercise_relation_ex_seq_fk
+	foreign key (ex_seq) references exercise(ex_seq) on delete set null;
+    
+--qna - member
+alter table qna
+	add constraint qna_email_fk
+	foreign key (email) references member(email) on delete set null;
+    
+--challenge - member
+alter table challenge
+	add constraint challenge_email_fk
+	foreign key (email) references member(email) on delete set null;
+
+--challenge_comment - challenge
+alter table challenge_comment
+	add constraint challenge_comment_ch_seq_fk
+	foreign key (ch_seq) references challenge(ch_seq) on delete cascade;
+
+--challenge_comment - member
+alter table challenge_comment
+	add constraint challenge_comment_email_fk
+	foreign key (email) references member(email) on delete set null;
+    
+--challenge_group - challenge
+alter table challenge_group
+	add constraint challenge_group_ch_seq_fk
+	foreign key (ch_seq) references challenge(ch_seq) on delete set null;
+    
+--challenge_group - challenge_record
+alter table challenge_group
+	add constraint challenge_group_email_fk
+	foreign key (email) references member(email) on delete set null;
+    
+--challenge_record - challenge
+alter table challenge_record
+	add constraint challenge_record_challenge_fk
+	foreign key (ch_seq) references challenge(ch_seq) on delete set null;
+    
+--challenge_record - member
+alter table challenge_record
+	add constraint challenge_record_email_fk
+	foreign key (email) references member(email) on delete set null;
+    
+--challenge_record - challenge_file
+alter table challenge_file
+	add constraint challenge_file_cr_seq_fk
+	foreign key (cr_seq) references challenge_record(cr_seq) on delete cascade;
+    
+    

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="MapperBoard">
+
+	<sql id="myselect">
+		select co_seq, email, category, subject, content, readhit, regdate
+		from co_board
+	</sql> 	
+	<select id="SelectTotalCount" resultType="int">
+		select count(*) as cnt from co_board	
+		<if test="mode == 'email'">
+			where email like #{keyword}
+		</if>
+		<if test="mode == 'subject'">
+			where subject like #{keyword}
+		</if>
+		<if test="mode == 'cont
+		2ent'">
+			where content like #{keyword}
+		</if>
+	</select>
+	
+	<select id="SelectDataList" resultType="MyCoBoard">
+		select * from co_board order by co_seq desc
+		<if test="mode == 'email'">
+			where email like #{keyword}
+		</if>
+		<if test="mode == 'subject'">
+			where subject like #{keyword}
+		</if>
+		<if test="mode == 'content'">
+			where content like #{keyword}
+		</if>
+	</select>	
+	
+	<select id="SelectDataByPk" parameterType="Integer" resultType="MyCoBoard">
+		<include refid="myselect" />
+		 where co_seq = #{co_seq}
+	</select>	
+	<update id="UpdateReadhit" parameterType="int">
+		update co_board set readhit = readhit + 1 
+		where co_seq = #{co_seq}
+	</update>
+	
+	
+	<!--  
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from boards
+		<if test="what == 'albumname'">
+			where albumname like #{keyword}
+		</if>		
+		<if test="what == 'song'">
+			where song like #{keyword}
+		</if>	
+	</select>
+
+	<update id="UpdateData" parameterType="MyCoBoard">
+		update boards set 
+		content=#{content}, password=#{password}, 
+		regdate=to_date(#{regdate}, 'yyyy/mm/dd'), 
+		subject=#{subject}, writer=#{writer}
+		where no = #{no} 
+	</update>	
+	
+	<delete id="DeleteData" parameterType="int">
+		delete from boards where no = #{no} 
+	</delete>	
+	-->
+
+	<insert id="InsertData" parameterType="MyCoBoard">
+		insert into 
+		co_board(co_seq, subject, email, content, readhit, regdate)		
+		values(co_seq.nextval, #{subject}, #{email}, #{content}, default, to_date(#{regdate}, 'yyyy/MM/dd'))
+	</insert>
+	
+	<!--  
+	<insert id="ReplyDataInsert" parameterType="MyCoBoard">
+		insert into 
+		boards(no, subject, writer, password, content, readhit, regdate, groupno, orderno, depth)
+		values(myboard.nextval, #{subject}, #{writer}, #{password}, #{content}, default, to_date(#{regdate}, 'yyyy/MM/dd'), #{groupno}, #{orderno}, #{depth}) 
+	</insert>
+	<update id="ReplyDataUpdate">
+		update boards set 
+		orderno = orderno + 1 
+		where groupno = #{groupno} and orderno > #{orderno}		
+	</update>	
+	-->
+	
+	
+</mapper>

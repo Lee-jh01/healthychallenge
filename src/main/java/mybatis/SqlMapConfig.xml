@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<!-- 마이바티스의 작동 규칙 정의 -->
+	<typeAliases>
+		<typeAlias alias="MyMember" type="bean.Member" />		
+		<typeAlias alias="MyFood" type="bean.MyFood" />		
+		<typeAlias alias="MyMealMemory" type="bean.MealMemory" />		
+		<typeAlias alias="Meal" type="bean.Meal" />		
+		<typeAlias alias="MyExercise" type="bean.Exercise" />		
+		<typeAlias alias="MyExerciseRelation" type="bean.ExerciseRelation" />		
+		<typeAlias alias="MyExerciseMemory" type="bean.ExerciseMemory" />		
+		<typeAlias alias="MyQna" type="bean.Qna" />		
+		<typeAlias alias="MyCoBoard" type="bean.Board" />		
+		<typeAlias alias="MyScrap" type="bean.Scrap" />		
+		<typeAlias alias="MyCoComment" type="bean.CoComment" />		
+		<typeAlias alias="MyCommunityFile" type="bean.CommunityFile" />		
+		<typeAlias alias="MyChallenge" type="bean.Challenge" />		
+		<typeAlias alias="MyChallengeGroup" type="bean.ChallengeGroup" />		
+		<typeAlias alias="MyChallengeRecord" type="bean.ChallengeRecord" />		
+		<typeAlias alias="MyChallengeFile" type="bean.ChallengeFile" />		
+	</typeAliases>	
+
+	<!-- mapper 태그 사용시 앞에 슬래시 붙이지 말고 패키지 경로 쭉~~~ 파일 이름 명시 -->
+	<mappers>
+ 		<mapper resource="mybatis/mapmember.xml" />
+		<mapper resource="mybatis/mapboard.xml" />
+		<mapper resource="mybatis/mapboardcomment.xml" />
+		<mapper resource="mybatis/mapqna.xml" />
+		<mapper resource="mybatis/mapchallenge.xml" /> 
+		<mapper resource="mybatis/mapchallengecomment.xml" /> 
+		<mapper resource="mybatis/mapchallengerecord.xml" /> 
+		<mapper resource="mybatis/mapmeal.xml" /> 
+		<mapper resource="mybatis/mapexercise.xml" /> 
+	</mappers>
+</configuration>

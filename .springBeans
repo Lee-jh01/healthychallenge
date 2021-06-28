@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.9.16.202103111552-RELEASE]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[true]]></enableImports>
+	<configs>
+	</configs>
+	<autoconfigs>
+		<config>src/main/webapp/WEB-INF/spring/appServlet/board-config.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/appServlet/challenge-config.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/appServlet/member-config.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/appServlet/challengecomment-config.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/appServlet/common-config.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/appServlet/exercise-config.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/appServlet/boardcomment-config.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/appServlet/meal-config.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/root-context.xml</config>
+	</autoconfigs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>

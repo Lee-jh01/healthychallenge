@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://JAVA.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/root-context.xml</param-value>
+	</context-param>
+	
+	<!-- Creates the Spring Container shared by all Servlets and Filters -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	    <!-- common section -->
+    <servlet>
+    	<servlet-name>common</servlet-name>
+    	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    	<init-param>
+    		<param-name>contextConfigLocation</param-name>
+    		<param-value>/WEB-INF/spring/appServlet//common-config.xml</param-value>
+    	</init-param>
+    </servlet>
+    
+    <servlet-mapping>
+		<servlet-name>common</servlet-name>
+		<url-pattern>*.co</url-pattern>
+	</servlet-mapping>	
+
+	<!-- board section -->
+    <servlet>
+    	<servlet-name>board</servlet-name>
+    	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    	<init-param>
+    		<param-name>contextConfigLocation</param-name>
+    		<param-value>/WEB-INF/spring/appServlet/board-config.xml</param-value>
+    	</init-param>
+    </servlet>
+    
+    <servlet-mapping>
+		<servlet-name>board</servlet-name>
+		<url-pattern>*.bo</url-pattern>
+	</servlet-mapping>	
+	
+	<!-- boardcomment section -->
+    <servlet>
+    	<servlet-name>boardcomment</servlet-name>
+    	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    	<init-param>
+    		<param-name>contextConfigLocation</param-name>
+    		<param-value>/WEB-INF/spring/appServlet/boardcomment-config.xml</param-value>
+    	</init-param>
+    </servlet>
+    
+    <servlet-mapping>
+		<servlet-name>boardcomment</servlet-name>
+		<url-pattern>*.bc</url-pattern>
+	</servlet-mapping>	
+    
+    <!--challenge section -->
+    <servlet>
+    	<servlet-name>challenge</servlet-name>
+    	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    	<init-param>
+    		<param-name>contextConfigLocation</param-name>
+    		<param-value>/WEB-INF/spring/appServlet/challenge-config.xml</param-value>
+    	</init-param>
+    </servlet>
+    
+    <servlet-mapping>
+		<servlet-name>challenge</servlet-name>
+		<url-pattern>*.ch</url-pattern>
+	</servlet-mapping>	
+	
+	<!--challenge comment -->
+    <servlet>
+    	<servlet-name>challengecomment</servlet-name>
+    	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    	<init-param>
+    		<param-name>contextConfigLocation</param-name>
+    		<param-value>/WEB-INF/spring/appServlet/challengecomment-config.xml</param-value>
+    	</init-param>
+    </servlet>
+    
+    <servlet-mapping>
+		<servlet-name>challengecomment</servlet-name>
+		<url-pattern>*.cc</url-pattern>
+	</servlet-mapping>	
+	
+		<!--challenge record -->
+    <servlet>
+    	<servlet-name>challengerecord</servlet-name>
+    	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    	<init-param>
+    		<param-name>contextConfigLocation</param-name>
+    		<param-value>/WEB-INF/spring/appServlet/challengerecord-config.xml</param-value>
+    	</init-param>
+    </servlet>
+    
+    <servlet-mapping>
+		<servlet-name>challengerecord</servlet-name>
+		<url-pattern>*.cr</url-pattern>
+	</servlet-mapping>	
+		
+		<!--exercise -->
+    <servlet>
+    	<servlet-name>exercise</servlet-name>
+    	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    	<init-param>
+    		<param-name>contextConfigLocation</param-name>
+    		<param-value>/WEB-INF/spring/appServlet/exercise-config.xml</param-value>
+    	</init-param>
+    </servlet>
+    
+    <servlet-mapping>
+		<servlet-name>exercise</servlet-name>
+		<url-pattern>*.ex</url-pattern>
+	</servlet-mapping>	
+	
+	<!--meal -->
+    <servlet>
+    	<servlet-name>meal</servlet-name>
+    	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    	<init-param>
+    		<param-name>contextConfigLocation</param-name>
+    		<param-value>/WEB-INF/spring/appServlet/meal-config.xml</param-value>
+    	</init-param>
+    </servlet>
+    
+    <servlet-mapping>
+		<servlet-name>meal</servlet-name>
+		<url-pattern>*.ml</url-pattern>
+	</servlet-mapping>
+	
+	<!--member -->
+    <servlet>
+    	<servlet-name>member</servlet-name>
+    	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    	<init-param>
+    		<param-name>contextConfigLocation</param-name>
+    		<param-value>/WEB-INF/spring/appServlet/member-config.xml</param-value>
+    	</init-param>
+    </servlet>
+    
+    <servlet-mapping>
+		<servlet-name>member</servlet-name>
+		<url-pattern>*.me</url-pattern>
+	</servlet-mapping>
+	
+	
+
+</web-app>
