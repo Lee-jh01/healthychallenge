@@ -25,7 +25,7 @@ public class BoardDao {
 	public int SelectTotalCount(String mode, String keyword) {
 		Map<String, String>map = new HashMap<String, String>();
 		map.put("mode", mode);
-		map.put("keyword", keyword);
+		map.put("keyword", "%" + keyword + "%") ;
 		
 		return this.abcd.selectOne(namespace + "SelectTotalCount", map);
 		
@@ -58,5 +58,15 @@ public class BoardDao {
 		return this.abcd.insert(namespace+ "UpdateReadhit", no);
 		
 	}
+
+	public int DeleteData(int no) {
+		return this.abcd.delete(namespace + "DeleteData", no);
+	}
+
+	public int UpdateData(Board bean) {
+		// 해당 게시물을 수정합니다.   
+				System.out.println(bean.toString());
+				return this.abcd.update(namespace + "UpdateData", bean);
+			}	
 
 }

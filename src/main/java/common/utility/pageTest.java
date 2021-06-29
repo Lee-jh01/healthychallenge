@@ -6,7 +6,7 @@ public class pageTest {
 		String _pageNumber = "2" ; 
 		String _pageSize = "10" ;
 		int totalCount = 33;
-		String url = "list.bo.jsp" ;
+		String url = "boList.bo.jsp" ;
 		String mode = "" ; //검색 모드
 		String keyword = "" ; //검색 키워드
 		

@@ -26,7 +26,26 @@ ul.pagination.pagination-sm {
 		function writeForm(){
 				location.href='<%=contextPath%>/boInsert.bo';
 		}
+		function search(){
+			if( $('#mode').val() == 'all' ){
+				alert('검색 목록을 선택해주세요') ;
+				//$('#mode').focus();
+			}else{
+				alert('하하') ;
+				var keyword = $('#keyword').val() ;
+				location.href='<%=contextPath%>/boInsertList.bo' + '&mode=' + mode + '&keyword=' + keyword ;
+				
+			}
+			//alert( $('#mode').val() );
+		}
 		
+		
+		
+		function searchAll(){
+			//$('#mode').val('-');
+			//$('#keyword').val('');
+			location.href='<%=contextPath%>/boList.bo';
+		}
 		
 </script>
 </head>
@@ -42,13 +61,13 @@ ul.pagination.pagination-sm {
 				<thead>
 				<tr>
 					<td colspan="10" align="center">
-						<form class="form-inline" role="form" name="myform" action="<%=contextPath%>/list.bo" method="get">
+						<form class="form-inline" role="form" name="myform" action="<%=contextPath%>/boList.bo" method="get">
 							<div class="form-group">
 								<select class="form-control" name="mode" id="mode">
 									<option value="all" selected="selected">-- 선택하세요---------
-									<option value="category" >운동
-									<option value="category" >식단								
-									<option value="category" >정보공유								
+									<option value="email" >작성자
+									<option value="subject" >제목								
+									<option value="content" >글내용
 								</select>
 							</div>
 							<div class="form-group">
@@ -57,9 +76,10 @@ ul.pagination.pagination-sm {
 									id="keyword" placeholder="검색 키워드">
 							</div>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<button class="btn btn-default btn-warning" type="submit" onclick="search();">검색</button>
-							
+							<button class="btn btn-default btn-warning" type="submit" onclick="search(); return false;">검색</button>
+							<button class="btn btn-default btn-warning" type="button" onclick="searchAll();">전체 검색</button>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							
 							<button class="btn btn-default btn-warning" type="button"
 							
 								onclick="writeForm(); return false;">글 쓰기</button>

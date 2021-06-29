@@ -25,7 +25,7 @@
 			
 			var spantag = $("<span>");// 작성자 정보의 이름
 			spantag.addClass("email");
-			spantag.html(writer + "님");
+			spantag.html(email + "님");
 			
 			var spandate = $("<span>");// 작성 일시
 			spandate.html("&nbsp;&nbsp;/&nbsp;&nbsp;" + regdate + " ");
@@ -87,9 +87,9 @@
 			/** 덧글 내용 저장 이벤트 */
 			$("#comment_form").submit(function(){
 				// 작성자 이름에 대한 입력여부 검사
-				if (!$("#writer").val()) {
+				if (!$("#email").val()) {
 					alert("이름을 입력하세요.");
-					$("#writer").focus();
+					$("#email").focus();
 					return false;
 				}
 	
@@ -105,7 +105,7 @@
 				$.post(url, parameter, function( data ) {
 					/* alert( '댓글이 작성되었읍니다.' ) ; */
 					getListComment(0) ; /* 목록 갱신 */
-					$("#writer").val('') ;
+					$("#email").val('') ;
 					$("#content").val('') ;
 					
 				}).fail(function() {
@@ -164,6 +164,33 @@
 					<button class="btn btn-primary" onclick="gotoBack();">
 						돌아 가기</button>
 				</div>
+				
+				<td>
+							<c:if test="${sessionScope.loginfo.email == bean.email}">
+								<a href="<%=contextPath%>/update.bo?no=${bean.co_seq}&${requestScope.parameters}">
+									수정
+								</a>
+							</c:if>
+							<c:if test="${sessionScope.loginfo.email != bean.email}">
+								수정
+							</c:if>
+						</td>
+							
+						<td>
+							<c:if test="${sessionScope.loginfo.email == bean.email}">
+								<a href="<%=contextPath%>/delete.bo?no=${bean.co_seq}&${requestScope.parameters}">
+									삭제
+								</a>
+							</c:if>
+							<c:if test="${sessionScope.loginfo.email != bean.email}">
+								삭제
+							</c:if>
+						</td>
+				
+				
+				
+				
+				
 			</div>
 			<!-- 댓글 영역 -->
 			<div class="col-sm-12">					
@@ -173,11 +200,11 @@
 				<div id="comment_write">
 					<form id="comment_form" action="loginProc.jsp" method="post" role="form" class="form-horizontal" >
 						<div class="form-group">
-							<label for="writer" class="col-xs-3 col-lg-3 control-label">작성자</label>
+							<label for="email" class="col-xs-3 col-lg-3 control-label">작성자</label>
 							<div class="col-xs-4 col-lg-4">
 								<input type="hidden" name="co_seq" value="${bean.co_seq}" />
-								<input type="text" name="fakewriter" id="fakewriter" class="form-control" disabled="disabled" value="${sessionScope.loginfo.email}">								
-							</div><input type="hidden" name="writer" id="writer" value="${sessionScope.loginfo.email}">
+								<input type="text" name="fakeemail" id="fakeemail" class="form-control" disabled="disabled" value="${sessionScope.loginfo.email}">								
+							</div><input type="hidden" name="email" id="email" value="${sessionScope.loginfo.email}">
 						</div>
 						<div class="form-group">
 							<label for="content" class="col-xs-3 col-lg-3 control-label">덧글 내용</label>

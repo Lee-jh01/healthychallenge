@@ -55,19 +55,22 @@
 			where song like #{keyword}
 		</if>	
 	</select>
+-->
 
+	
 	<update id="UpdateData" parameterType="MyCoBoard">
-		update boards set 
-		content=#{content}, password=#{password}, 
+		update co_board set 
+		content=#{content},
 		regdate=to_date(#{regdate}, 'yyyy/mm/dd'), 
-		subject=#{subject}, writer=#{writer}
-		where no = #{no} 
-	</update>	
+		subject=#{subject}, email=#{email}
+		where co_seq = #{co_seq} 
+	</update>
+	
 	
 	<delete id="DeleteData" parameterType="int">
-		delete from boards where no = #{no} 
+		delete from co_board where co_seq = #{co_seq} 
 	</delete>	
-	-->
+	
 
 	<insert id="InsertData" parameterType="MyCoBoard">
 		insert into 
