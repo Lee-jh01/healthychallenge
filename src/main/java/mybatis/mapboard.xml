@@ -16,8 +16,7 @@
 		<if test="mode == 'subject'">
 			where subject like #{keyword}
 		</if>
-		<if test="mode == 'cont
-		2ent'">
+		<if test="mode == 'content'">
 			where content like #{keyword}
 		</if>
 	</select>
@@ -72,8 +71,8 @@
 
 	<insert id="InsertData" parameterType="MyCoBoard">
 		insert into 
-		co_board(co_seq, subject, email, content, readhit, regdate)		
-		values(co_seq.nextval, #{subject}, #{email}, #{content}, default, to_date(#{regdate}, 'yyyy/MM/dd'))
+		co_board(co_seq, category, subject, email, content, readhit, regdate)		
+		values(co_seq.nextval, #{category}, #{subject}, #{email}, #{content}, default, default)
 	</insert>
 	
 	<!--  

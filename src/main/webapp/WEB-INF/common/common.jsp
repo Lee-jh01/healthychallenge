@@ -7,6 +7,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+
 <!-- whologin 변수는 로그인 상태를 저장하고 있는 변수입니다. -->
 <c:set var="whologin" value="0" />
 <c:if test="${empty sessionScope.loginfo}">
@@ -14,11 +15,11 @@
 	<c:set var="whologin" value="0" />
 </c:if>
 <c:if test="${not empty sessionScope.loginfo}">
-	<c:if test="${sessionScope.loginfo.id == 'admin'}">\
+	<c:if test="${sessionScope.loginfo.email == 'admin'}">\
 		<!-- 관리자로 로그인한 경우 -->
 		<c:set var="whologin" value="2" />
 	</c:if>
-	<c:if test="${sessionScope.loginfo.id != 'admin'}">
+	<c:if test="${sessionScope.loginfo.email != 'admin'}">
 		<!-- 일반 사용자로 로그인한 경우 -->
 		<c:set var="whologin" value="1" />
 	</c:if>
@@ -142,9 +143,16 @@ int mysearch = 2;
                         <i class=" fa fa-phone"></i>
                         +65 11.188.888
                     </div>
-                </div>
+                </div> 
                 <div class="ht-right">
-                    <a href="/healthy/firstTest/firstTestForm" class="login-panel"><i class="fa fa-user"></i>Login</a>
+                    <li><c:if test="${empty sessionScope.loginfo}">
+							<a href="<%=contextPath%>/meLogin.me"><span
+								class="glyphicon glyphicon-log-in"> 로그인 </span> </a>
+						</c:if> <c:if test="${not empty sessionScope.loginfo}">
+							<a href="<%=contextPath%>/logout.me"><span
+								class="glyphicon glyphicon-log-in"> 로그 아웃 </span> </a>
+						</c:if></li>
+						
                     <div class="lan-selector">
                         <select class="language_drop" name="countries" id="countries" style="width:300px;">
                             <option value='yt' data-image="img/flag-1.jpg" data-imagecss="flag yt"

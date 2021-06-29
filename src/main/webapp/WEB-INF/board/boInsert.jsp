@@ -26,9 +26,9 @@
 						<label class="control-label col-sm-<%=formleft%>" for="email">작성자</label>
 						<div class="col-sm-<%=formright%>">
 							<input type="text" class="form-control" name="fakeemail" id="fakeemail"
-								placeholder="작성자" value="${sessionScope.loginfo.name}(${sessionScope.loginfo.id})" disabled="disabled" />
+								placeholder="작성자" value="${sessionScope.loginfo.name}(${sessionScope.loginfo.email})" disabled="disabled" />
 							<input type="hidden" name="email" id="email"
-								value="${sessionScope.loginfo.id}" />								
+								value="${sessionScope.loginfo.email}" />								
 							<form:errors cssClass="err" path="email" /> 
 						</div>
 					</div>
@@ -43,6 +43,26 @@
 					</div>
 					
 					
+					<div class="col-lg-4">
+                           <div class="checkout__input" for = "category">
+                              <p>
+                                 카테고리
+                                    <span>
+                                       *
+                                    </span>
+                              </p>
+                              <div>
+                                  <select id="category" name="category" class="form">
+                                     <option value="-" selected="selected">선택하세요
+                                     <option value="운동">운동
+                                     <option value="식단">식단
+                                     <option value="정보공유">정보공유
+                                  </select>
+                               </div>
+                           </div>
+                        </div>
+					
+					
 					<div class="form-group">
 						<label class="control-label col-sm-<%=formleft%>" for="content">글
 							내용</label>
@@ -52,15 +72,7 @@
 							<form:errors cssClass="err" path="content" /> 
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-sm-<%=formleft%>" for="regdate">작성
-							일자</label>
-						<div class="col-sm-<%=formright%>">
-							<form:input path="regdate"  type="datetime" class="form-control" name="regdate"
-								id="regdate" placeholder="작성 일자" value="${bean.regdate}" /> 
-								<form:errors cssClass="err" path="regdate" /> 
-						</div>
-					</div>
+					
 					<div class="form-group">
 						<div align="center" class="col-sm-offset-3 col-sm-6">
 							<button class="btn btn-default" type="submit">글쓰기</button>

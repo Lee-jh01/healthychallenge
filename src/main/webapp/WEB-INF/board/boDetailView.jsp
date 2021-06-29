@@ -176,8 +176,8 @@
 							<label for="writer" class="col-xs-3 col-lg-3 control-label">작성자</label>
 							<div class="col-xs-4 col-lg-4">
 								<input type="hidden" name="co_seq" value="${bean.co_seq}" />
-								<input type="text" name="fakewriter" id="fakewriter" class="form-control" disabled="disabled" value="${sessionScope.loginfo.id}">								
-							</div><input type="hidden" name="writer" id="writer" value="${sessionScope.loginfo.id}">
+								<input type="text" name="fakewriter" id="fakewriter" class="form-control" disabled="disabled" value="${sessionScope.loginfo.email}">								
+							</div><input type="hidden" name="writer" id="writer" value="${sessionScope.loginfo.email}">
 						</div>
 						<div class="form-group">
 							<label for="content" class="col-xs-3 col-lg-3 control-label">덧글 내용</label>
