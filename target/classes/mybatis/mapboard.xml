@@ -8,30 +8,38 @@
 		select co_seq, email, category, subject, content, readhit, regdate
 		from co_board
 	</sql> 	
-	<select id="SelectTotalCount" resultType="int">
+	<select id="SelectTotalCount" resultType="Integer">
 		select count(*) as cnt from co_board	
-		<if test="mode == 'email'">
-			where email like #{keyword}
+		<if test="category != 'all'">
+			where category = #{category}
+			<if test="keyword != 'all'">
+				and (email like #{keyword} or subject like #{keyword} or content like #{keyword}) 
+			</if>
 		</if>
-		<if test="mode == 'subject'">
-			where subject like #{keyword}
-		</if>
-		<if test="mode == 'content'">
-			where content like #{keyword}
-		</if>
+		<if test="category == 'all'">
+			<if test="keyword != 'all'">
+				where email like #{keyword} or subject like #{keyword} or content like #{keyword}
+			</if>
+		</if>  
 	</select>
 	
 	<select id="SelectDataList" resultType="MyCoBoard">
-		select * from co_board order by co_seq desc
-		<if test="mode == 'email'">
-			where email like #{keyword}
-		</if>
-		<if test="mode == 'subject'">
-			where subject like #{keyword}
-		</if>
-		<if test="mode == 'content'">
-			where content like #{keyword}
-		</if>
+		select * from co_board 
+		
+  		<if test="category != 'all'">
+			where category = #{category}
+			<if test="keyword != 'all'">
+				and (email like #{keyword} or subject like #{keyword} or content like #{keyword}) 
+			</if>
+		</if> 
+ 		<if test="category == 'all'">
+			<if test="keyword != 'all'">
+				where email like #{keyword} or subject like #{keyword} or content like #{keyword}
+			</if>
+		</if> 
+		
+		order by co_seq desc
+		
 	</select>	
 	
 	<select id="SelectDataByPk" parameterType="Integer" resultType="MyCoBoard">

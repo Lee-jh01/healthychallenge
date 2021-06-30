@@ -104,7 +104,7 @@ int mysearch = 2;
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-
+	<script src="https://kit.fontawesome.com/c74c7ac0ae.js" crossorigin="anonymous"></script>
     <!-- Css Styles -->
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="bootstrap/css/font-awesome.min.css" type="text/css">
@@ -158,9 +158,9 @@ int mysearch = 2;
 						
                     <div class="lan-selector">
                         <select class="language_drop" name="countries" id="countries" style="width:300px;">
-                            <option value='yt' data-image="img/flag-1.jpg" data-imagecss="flag yt"
+                            <option value='yt' data-image="bootstrap/img/flag-1.jpg" data-imagecss="flag yt"
                                 data-title="English">English</option>
-                            <option value='yu' data-image="img/flag-2.jpg" data-imagecss="flag yu"
+                            <option value='yu' data-image="bootstrap/img/flag-2.jpg" data-imagecss="flag yu"
                                 data-title="Bangladesh">German </option>
                         </select>
                     </div>
@@ -200,7 +200,7 @@ int mysearch = 2;
                                         <table>
                                             <tbody>
                                                 <tr>
-                                                    <td class="si-pic"><img src="img/select-product-1.jpg" alt=""></td>
+                                                    <td class="si-pic"><img src="bootstrap/img/select-product-1.jpg" alt=""></td>
                                                     <td class="si-text">
                                                         <div class="product-selected">
                                                             <p>$60.00 x 1</p>
@@ -212,7 +212,7 @@ int mysearch = 2;
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="si-pic"><img src="img/select-product-2.jpg" alt=""></td>
+                                                    <td class="si-pic"><img src="bootstrap/img/select-product-2.jpg" alt=""></td>
                                                     <td class="si-text">
                                                         <div class="product-selected">
                                                             <p>$60.00 x 1</p>

@@ -1,11 +1,8 @@
 package board.controller;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,23 +48,13 @@ public class BoardUpdateController extends SuperClass{
 	
 	@PostMapping(command)
 	public ModelAndView doPost(
-			@ModelAttribute("board") @Valid Board xxx,
-			BindingResult asdf){
-		
-		if ( asdf.hasErrors() ) {
-			System.out.println("유효성 검사에 문제 있슴");
-			System.out.println( asdf );
-			this.mav.addObject("bean", xxx);	
-			this.mav.setViewName(super.getpage);
-			
-		} else {
-			System.out.println("유효성 검사에 문제 없슴");
+			@ModelAttribute("board") Board board){
+
 			int cnt = -999999 ;
-			cnt = dao.UpdateData(xxx) ;
+			cnt = dao.UpdateData(board) ;
 			
 			// request 객체의 내용을 보존하면서 목록 보기 페이지로 넘겨 줍니다.
-			this.mav.setViewName(this.redirect);
-		}	
+			this.mav.setViewName(this.redirect);	
 		
 		return this.mav ;
 	}
