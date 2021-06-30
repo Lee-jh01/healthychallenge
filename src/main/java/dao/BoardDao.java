@@ -22,21 +22,33 @@ public class BoardDao {
 		
 	}
 	
-	public int SelectTotalCount(String mode, String keyword) {
+	public int SelectTotalCount(String category, String keyword) {
 		Map<String, String>map = new HashMap<String, String>();
-		map.put("mode", mode);
-		map.put("keyword", "%" + keyword + "%") ;
+		map.put("category", category);
+		
+		if ( keyword == null || keyword.equals("null") || keyword.equals("")) {
+			keyword = "all";
+			map.put("keyword", keyword);
+		}else {
+			map.put("keyword", "%" + keyword + "%") ;	
+		}
 		
 		return this.abcd.selectOne(namespace + "SelectTotalCount", map);
 		
 	}
 	
-	public List<Board> SelectDataList(int offset, int limit, String mode, String keyword){
-		
+	public List<Board> SelectDataList(int offset, int limit, String category, String keyword){
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		Map<String, String> map = new HashMap<String, String>() ;
-		map.put("mode", mode) ;
-		map.put("keyword", "%" + keyword + "%") ;	
+		map.put("category", category) ;
+		
+		if ( keyword == null || keyword.equals("null") || keyword.equals("")) {
+			keyword = "all";
+			map.put("keyword", keyword);
+		}else {
+			map.put("keyword", "%" + keyword + "%") ;	
+		}
+		
 		return this.abcd.selectList(namespace + "SelectDataList", map, rowBounds);
 	}
 

@@ -7,7 +7,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>BootStrap Sample</title>
-	
 	<script type="text/javascript">
 		function gotoBack(){
 			location.href='<%=contextPath%>/boList.bo?${requestScope.parameters}';
@@ -122,7 +121,45 @@
 	int rightside = twelve - leftside; //판넬의 우측
 %>
 <body>
-	<div class="container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
+  <!-- Breadcrumb Section Begin -->
+    <div class="breacrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <a href="${contextPath}/main.co"><i class="fa fa-home"></i> 메인</a>
+                        <a href="${contextPath}/boList.bo">커뮤니티 게시판</a>
+                        <span>상세보기</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Form Section Begin -->
+    <br>
+    <br>
+ 	<div class="container">
+ 		<div class="card">
+ 			<div class="card-header" style="background-color:white;">
+ 				<div class="d-flex justify-content-start">
+ 					<h2>${bean.subject }</h2>
+ 				</div>
+ 				<div class="d-flex justify-content-end">
+ 					<span class="font-weigt-lightr">&nbsp;${bean.regdate}&nbsp;&nbsp;</span>
+ 					<span class="font-weigt-lightr"><i class="fas fa-user"></i>&nbsp;${bean.email}&nbsp;&nbsp;</span>
+ 					<span class="font-weigt-lightr"><i class="fas fa-eye"></i>&nbsp;${bean.readhit}</span>
+ 				</div>
+ 			</div>
+ 		 	<div class="card-body">
+ 				<table class="table table-default">
+		 			<tr>
+		 				<td>${bean.content }</td>
+		 			</tr>
+ 				</table> 
+ 			</div> 
+ 		</div>
+ 	
+<%-- 	<div class="container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
 		<div class="panel panel-default panel-primary">
 			<div class="panel-heading">
 				<h1 class="panel-title" align="left">게시물 상세 보기</h1>
@@ -158,14 +195,14 @@
 							<td width="75%" align="left">${bean.regdate}</td>
 						</tr>
 					</table>
-				</div>
-				<hr>
-				<div class="col-sm-offset-5 col-sm-4">
-					<button class="btn btn-primary" onclick="gotoBack();">
-						돌아 가기</button>
-				</div>
+				</div> --%>
 				
-				<td>
+				<hr>
+					<div class="d-flex">
+						<div class="p-2 mr-auto">
+							<button class="btn btn-warning" onclick="gotoBack();">목록보기</button>
+						</div>
+						<div class="p-2">
 							<c:if test="${sessionScope.loginfo.email == bean.email}">
 								<a href="<%=contextPath%>/update.bo?no=${bean.co_seq}&${requestScope.parameters}">
 									수정
@@ -174,24 +211,21 @@
 							<c:if test="${sessionScope.loginfo.email != bean.email}">
 								수정
 							</c:if>
-						</td>
-							
-						<td>
+						</div>
+						<div class="p-2">
 							<c:if test="${sessionScope.loginfo.email == bean.email}">
 								<a href="<%=contextPath%>/delete.bo?no=${bean.co_seq}&${requestScope.parameters}">
 									삭제
 								</a>
 							</c:if>
+							&nbsp;&nbsp;
 							<c:if test="${sessionScope.loginfo.email != bean.email}">
 								삭제
 							</c:if>
-						</td>
-				
-				
-				
-				
-				
-			</div>
+						</div>
+					</div>
+				<hr>
+
 			<!-- 댓글 영역 -->
 			<div class="col-sm-12">					
 				<ul id="comment_list">
@@ -203,8 +237,9 @@
 							<label for="email" class="col-xs-3 col-lg-3 control-label">작성자</label>
 							<div class="col-xs-4 col-lg-4">
 								<input type="hidden" name="co_seq" value="${bean.co_seq}" />
-								<input type="text" name="fakeemail" id="fakeemail" class="form-control" disabled="disabled" value="${sessionScope.loginfo.email}">								
-							</div><input type="hidden" name="email" id="email" value="${sessionScope.loginfo.email}">
+								<input type="text" name="fakeemail" id="fakeemail" class="form-control" disabled="disabled" value="${sessionScope.loginfo.email}">	
+								<input type="hidden" name="email" id="email" value="${sessionScope.loginfo.email}">							
+							</div>
 						</div>
 						<div class="form-group">
 							<label for="content" class="col-xs-3 col-lg-3 control-label">덧글 내용</label>
@@ -224,7 +259,8 @@
 			</div>
 
 		</div>
-	</div>
+
+				
 	<script>
 		$(document).ready(function() {
 			$('[data-toggle="popover"]').popover();

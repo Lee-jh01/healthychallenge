@@ -10,7 +10,10 @@
 		
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<!-- <mvc:annotation-driven /> -->
-		
+	
+	<!-- ck 에디터 파일 업로드 경로 -->
+<!--   	<resources mapping="/upload/**" location="/upload/" /> -->
+
 	<!-- controller라는 패키지에서 컨트롤러를 검색합니다. -->		
 	<context:component-scan base-package="board.controller" />
 	<context:component-scan base-package="dao" /> 
@@ -20,4 +23,5 @@
 		<beans:property name="prefix" value="/WEB-INF/board/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>		
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 </beans:beans>

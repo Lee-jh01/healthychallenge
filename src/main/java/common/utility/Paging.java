@@ -84,24 +84,25 @@ public class Paging {
 		//add_param 변수 : 검색 관련하여 추가되는 파라미터 리스트
 		String add_param = "&mode=" + mode + "&keyword=" + keyword ; 
 		
-		result += "<ul class='pagination" + paginationSize + "'>";
+		result += "<ul class='justify-content-center pagination'" + paginationSize + "'>";
+//		result += "<ul class='justify-content-center pagination'>";
 		if ( pageNumber <= pageCount ) {//1부터 10페이지까지는 [맨처음]과 [이전]이 없다 
 			//result += "맨처음&nbsp;&nbsp;";
 			//result += "이전&nbsp;&nbsp;";			
 		} else {
-			result += "<li><a href='" + url + "?pageNumber=" + 1 + 
+			result += "<li class=\"page-link\"><a class=\"page-link\" href='" + url + "?pageNumber=" + 1 + 
 				"&pageSize=" + pageSize + add_param + "'>맨처음</a></li>&nbsp;&nbsp;";
 			
-			result += "<li><a href='" + url + "?pageNumber=" + (beginPage - 1) + 
+			result += "<li class=\"page-link\"><a class=\"page-link\" href='" + url + "?pageNumber=" + (beginPage - 1) + 
 				"&pageSize=" + pageSize + add_param + "'>이전</a></li>&nbsp;&nbsp;";
 		}		
 		//페이지 시작 번호 부터 ~ 끝 번호 까지 표시
 		
 		for (int i = beginPage ; i <= endPage ; i++) {
 			if(i == pageNumber){ //현재 페이지이면 링크는 없고, 빨간색으로 표시
-				result += "<li class='active'><a><font color='red'><b>" + i + "</b></font></a></li>&nbsp;";
+				result += "<li class='active page-item'><a class='page-link'><font color='red'><b>" + i + "</b></font></a></li>&nbsp;";
 			}else{
-				result += "<li><a href='" + url + "?pageNumber=" + i + 
+				result += "<li class='page-item'><a class='page-link' href='" + url + "?pageNumber=" + i + 
 					"&pageSize=" + pageSize + add_param + "'>" + i + "</li></a>&nbsp;";	
 			}			
 		}
