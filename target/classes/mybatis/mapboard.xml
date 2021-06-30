@@ -78,6 +78,13 @@
 		values(co_seq.nextval, #{category}, #{subject}, #{email}, #{content}, default, default)
 	</insert>
 	
+	
+	<insert id="Scrap" parameterType="MyCoBoard">
+		insert into 
+		scrap(co_seq, email)		
+		values(co_seq.nextval, #{email})
+	</insert>
+	
 	<!--  
 	<insert id="ReplyDataInsert" parameterType="MyCoBoard">
 		insert into 

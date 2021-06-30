@@ -165,6 +165,27 @@
 						돌아 가기</button>
 				</div>
 				
+				<!-- 스크랩 -->
+				
+				<iframe name="no_refresh_frame" style="display: none;"></iframe>
+				<form name="zimform" action="<%=contextPath%>/healthy" method="post"
+					target="no_refresh_frame">
+					<input type="hidden" name="co_seq" value="${bean.co_seq}"> <input
+						type="hidden" name="email" value="${sessionScope.loginfo.email}">
+					<input type="hidden" name="command" value="prZim">
+					<div class="heart">
+						<button type="submit" class="btn btn-default "
+							onclick="alert('찜했습니다!');">
+							<img alt="찜" src="img/heart.png" width="40" height="40"
+								align="right">
+						</button>
+						&nbsp;&nbsp;&nbsp;
+					</div>
+				</form>
+				
+				
+				
+				
 				<td>
 							<c:if test="${sessionScope.loginfo.email == bean.email}">
 								<a href="<%=contextPath%>/update.bo?no=${bean.co_seq}&${requestScope.parameters}">
