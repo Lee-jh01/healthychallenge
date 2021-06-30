@@ -74,6 +74,11 @@ public class BoardDao {
 	public int DeleteData(int no) {
 		return this.abcd.delete(namespace + "DeleteData", no);
 	}
+	
+	public int Scrap(String user_no, String prod_no) {
+		return this.abcd.insert(namespace + "Scrap", prod_no);
+	}
+	
 
 	public int UpdateData(Board bean) {
 		// 해당 게시물을 수정합니다.   
