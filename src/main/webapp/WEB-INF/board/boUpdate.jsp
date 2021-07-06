@@ -121,7 +121,8 @@
 				<br>
 				<div class="form-group">
 					<div align="center">
-						<button class="btn btn-warning" type="button" onclick="javascript:check();">수정하기</button>
+						<!--<button class="btn btn-warning" type="button">수정하기</button>-->						
+						<button class="btn btn-default" type="submit">수정하기</button>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<button class="btn btn-wanring" type="reset">취소</button>
 					</div>

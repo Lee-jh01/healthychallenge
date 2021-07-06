@@ -4,4 +4,105 @@
 
 <mapper namespace="MapperQna">
 
+<sql id="myselect">
+		select qna_seq, email, title, content, readhit, regdate, groupno, orderno, depth
+		from qna
+	</sql> 	
+	<select id="SelectTotalCount" resultType="Integer">
+		select count(*) as cnt from qna			
+			<if test="keyword != 'all'">
+				and (email like #{keyword} or title like #{keyword} or content like #{keyword}) 
+			</if>				
+			<if test="keyword != 'all'">
+				where email like #{keyword} or title like #{keyword} or content like #{keyword}
+			</if>
+		  
+	</select>
+	
+	<select id="SelectDataList" resultType="MyQna">
+		select * from qna 		
+			<if test="keyword != 'all'">
+				and (email like #{keyword} or title like #{keyword} or content like #{keyword}) 
+			</if>
+			<if test="keyword != 'all'">
+				where email like #{keyword} or title like #{keyword} or content like #{keyword}
+			</if>		
+		order by groupno desc, orderno asc
+		
+	</select>	
+	
+	<select id="SelectDataByPk" parameterType="Integer" resultType="MyQna">
+		<include refid="myselect" />
+		 where qna_seq = #{qna_seq}
+	</select>	
+	
+	<update id="UpdateReadhit" parameterType="int">
+		update qna set readhit = readhit + 1 
+		where qna_seq = #{qna_seq}
+	</update>
+	
+	
+	<!--  
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from boards
+		<if test="what == 'albumname'">
+			where albumname like #{keyword}
+		</if>		
+		<if test="what == 'song'">
+			where song like #{keyword}
+		</if>	
+	</select>
+-->
+
+	
+	<update id="UpdateData" parameterType="MyQna">
+		update qna set 
+		content=#{content},
+		regdate=to_date(#{regdate}, 'yyyy/mm/dd'), 
+		title=#{title}, email=#{email}
+		where qna_seq = #{qna_seq} 
+	</update>
+	
+	
+	<delete id="DeleteData" parameterType="int">
+		delete from qna where qna_seq = #{qna_seq} 
+	</delete>	
+	
+
+	<insert id="InsertData" parameterType="MyQna">
+		insert into 
+		qna(qna_seq, title, email, content, readhit, regdate, groupno)		
+		values(qna_seq.nextval, #{title}, #{email}, #{content}, default, default, qna_seq.currval)
+	</insert>
+	
+	
+	<insert id="ReplyDataInsert" parameterType="MyQna">
+		insert into 
+		qna(qna_seq, title, email, content, readhit, regdate, groupno, orderno, depth)
+		values(qna_seq.nextval, #{title}, #{email}, #{content}, default, default, #{groupno}, #{orderno}, #{depth}) 
+	</insert>
+	
+	<update id="ReplyDataUpdate">
+		update qna set 
+		orderno = orderno + 1 
+		where groupno = #{groupno} and orderno > #{orderno}		
+	</update>
+	
+	
+
+	
+	<!--  
+	<insert id="ReplyDataInsert" parameterType="MyQna">
+		insert into 
+		boards(no, title, writer, password, content, readhit, regdate, groupno, orderno, depth)
+		values(myboard.nextval, #{title}, #{writer}, #{password}, #{content}, default, to_date(#{regdate}, 'yyyy/MM/dd'), #{groupno}, #{orderno}, #{depth}) 
+	</insert>
+	<update id="ReplyDataUpdate">
+		update boards set 
+		orderno = orderno + 1 
+		where groupno = #{groupno} and orderno > #{orderno}		
+	</update>	
+	-->
+
 </mapper>

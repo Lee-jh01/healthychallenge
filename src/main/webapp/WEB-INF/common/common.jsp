@@ -137,17 +137,24 @@ int mysearch = 2;
     <header class="header-section">
         <div class="header-top">
             <div class="container">
-                <div class="ht-left">
-                    <div class="mail-service">
-                        <i class=" fa fa-envelope"></i>
-                        hello.colorlib@gmail.com
+             
+               
+            </div>
+        </div>
+    <div class="container">
+            <div class="inner-header">
+               <div class="col-lg-4 col-md-6 w-50 mx-auto">
+                        <div class="logo">
+                            <a href="./main.co">
+                                <img src="bootstrap/img/logo.png" alt="" width="230px" height="70px" align="middle">
+                            </a> 
+                        </div>
                     </div>
-                    <div class="phone-service">
-                        <i class=" fa fa-phone"></i>
-                        +65 11.188.888
-                    </div>
-                </div> 
-                <div class="ht-right">
+                   
+                </div>
+            </div>
+            
+          <div class="ht-right" align="right">
                     <li><c:if test="${empty sessionScope.loginfo}">
 							<a href="<%=contextPath%>/meLogin.me"><span
 								class="glyphicon glyphicon-log-in"> 로그인 </span> </a>
@@ -155,127 +162,36 @@ int mysearch = 2;
 							<a href="<%=contextPath%>/logout.me"><span
 								class="glyphicon glyphicon-log-in"> 로그 아웃 </span> </a>
 						</c:if></li>
-						
-                    <div class="lan-selector">
-                        <select class="language_drop" name="countries" id="countries" style="width:300px;">
-                            <option value='yt' data-image="bootstrap/img/flag-1.jpg" data-imagecss="flag yt"
-                                data-title="English">English</option>
-                            <option value='yu' data-image="bootstrap/img/flag-2.jpg" data-imagecss="flag yu"
-                                data-title="Bangladesh">German </option>
-                        </select>
-                    </div>
-                    <div class="top-social">
-                        <a href="#"><i class="ti-facebook"></i></a>
-                        <a href="#"><i class="ti-twitter-alt"></i></a>
-                        <a href="#"><i class="ti-linkedin"></i></a>
-                        <a href="#"><i class="ti-pinterest"></i></a>
-                    </div>
                 </div>
-            </div>
-        </div>
-    <div class="container">
-            <div class="inner-header">
-               <div class="col-lg-2 col-md-2 w-50 mx-auto">
-                        <div class="logo">
-                            <a href="./main.co">
-                                <img src="bootstrap/img/logo.png" alt="">
-                            </a> 
-                        </div>
-                    </div>
-                    <div class="col-lg-3 text-right col-md-3">
-                        <ul class="nav-right">
-                            <li class="heart-icon">
-                                <a href="#">
-                                    <i class="icon_heart_alt"></i>
-                                    <span>1</span>
-                                </a>
-                            </li>
-                            <li class="cart-icon">
-                                <a href="#">
-                                    <i class="icon_bag_alt"></i>
-                                    <span>3</span>
-                                </a>
-                                <div class="cart-hover">
-                                    <div class="select-items">
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="si-pic"><img src="bootstrap/img/select-product-1.jpg" alt=""></td>
-                                                    <td class="si-text">
-                                                        <div class="product-selected">
-                                                            <p>$60.00 x 1</p>
-                                                            <h6>Kabino Bedside Table</h6>
-                                                        </div>
-                                                    </td>
-                                                    <td class="si-close">
-                                                        <i class="ti-close"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="si-pic"><img src="bootstrap/img/select-product-2.jpg" alt=""></td>
-                                                    <td class="si-text">
-                                                        <div class="product-selected">
-                                                            <p>$60.00 x 1</p>
-                                                            <h6>Kabino Bedside Table</h6>
-                                                        </div>
-                                                    </td>
-                                                    <td class="si-close">
-                                                        <i class="ti-close"></i>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="select-total">
-                                        <span>total:</span>
-                                        <h5>$120.00</h5>
-                                    </div>
-                                    <div class="select-button">
-                                        <a href="#" class="primary-btn view-card">VIEW CARD</a>
-                                        <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="cart-price">$150.00</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
         <div class="nav-item">
             <div class="container">
                 <nav class="nav-menu mobile-menu">
                     <ul>
                         <li class="active"><a href="./main.co">메인</a></li>
-                        <li><a>일일 기록</a>
-                            <ul class="dropdown">
-                                <li><a href="#">Men's</a></li>
-                                <li><a href="#">식단 일일기록</a></li>
-                                <li><a href="#">운동 일일기록</a></li>
-                                <li><a href="#">Kid's</a></li>
-                                <li><a href="#">Kid's</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">나의 챌린지</a></li>
-                        <li><a href="./blog.html">챌린지 참여</a>
-                        	<ul class="dropdown">
-                                <li><a href="#">대기중</a></li>
-                                <li><a href="#">진행중</a></li>
-                                <li><a href="#">종료</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="<%=contextPath%>/boList.bo">커뮤니티</a></li>
+          
                         
-                        <li><a href="#">Q & A</a>
-                            <ul class="dropdown">
-                                <li><a href="./blog-details.html">Blog Details</a></li>
-                                <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                                <li><a href="./check-out.html">Checkout</a></li>
-                                <li><a href="./faq.html">Faq</a></li>
-                                <li><a href="./register.html">Register</a></li>
-                                <li><a href="./login.html">Login</a></li>
-                            </ul>
+                        <li><a href="#">마이 페이지</a></li>
+                        <li><a href="#">오늘의 기록</a></li>
+                        <li><a href="#">&emsp;식단&emsp;</a>
+                        	<ul class="dropdown">
+                        	<li><a href="#">기록</a></li>
+                            <li><a href="#">통계</a></li>
+                        	</ul>
                         </li>
+                        <li><a href="#">&emsp;운동&emsp;</a>
+                        	<ul class="dropdown">
+                        	<li><a href="#">기록</a></li>
+                            <li><a href="#">통계</a></li>
+                        	</ul>
+                        </li>
+                        
+                        <li><a href="<%=contextPath%>/boList.bo">커뮤니티</a></li>
+                        <li><a href="<%=contextPath%>/qnaList.qa">Q & A </a></li>
+                       
+                        
+                        
+                        
                  	 </ul>
                	 </nav>
                 <div id="mobile-menu-wrap"></div>

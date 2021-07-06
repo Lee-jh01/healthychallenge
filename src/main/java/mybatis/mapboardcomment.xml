@@ -4,4 +4,38 @@
 
 <mapper namespace="MapperBoardComment">
 
+
+<!-- 댓글 조회 -->
+<select id="replyList" parameterType="int" resultType="MyCoComment">
+	select
+		b_CNUM, co_seq, email, content, regDate
+	from co_comment
+		where co_seq = #{co_seq}		
+</select>
+
+
+<!-- 댓글 작성 -->
+<insert id="replyWrite" parameterType="MyCoComment">
+	insert into co_comment(co_seq, email, content, regDate)
+		value(#{co_seq}, #{email}, #{content}, #{regDate})
+</insert>
+	
+<!-- 댓글 수정 -->
+<update id="replyModify" parameterType="MyCoComment">
+	update co_comment set
+		email = #{email},
+		content = #{content}
+	where b_CNUM = #{b_CNUM}
+		and co_seq = #{co_seq}	
+</update>
+
+<!-- 댓글 삭제 -->
+<delete id="replyDelete" parameterType="MyCoComment">
+	delete from co_comment
+	where b_CNUM = #{b_CNUM}
+		and co_seq = ${co_seq}	
+</delete>
+
+
+
 </mapper>
