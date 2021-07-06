@@ -45,6 +45,8 @@
 	</servlet-mapping>	
 	
 	
+	
+	
 	<!-- boardcomment section -->
     <servlet>
     	<servlet-name>boardcomment</servlet-name>
@@ -58,6 +60,23 @@
     <servlet-mapping>
 		<servlet-name>boardcomment</servlet-name>
 		<url-pattern>*.bc</url-pattern>
+	</servlet-mapping>	
+	
+	
+	
+	<!-- qna section -->
+    <servlet>
+    	<servlet-name>qna</servlet-name>
+    	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    	<init-param>
+    		<param-name>contextConfigLocation</param-name>
+    		<param-value>/WEB-INF/spring/appServlet/qna-config.xml</param-value>
+    	</init-param>
+    </servlet>
+    
+    <servlet-mapping>
+		<servlet-name>qna</servlet-name>
+		<url-pattern>*.qa</url-pattern>
 	</servlet-mapping>	
     
     <!--challenge section -->

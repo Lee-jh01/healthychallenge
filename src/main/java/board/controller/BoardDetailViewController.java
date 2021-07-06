@@ -29,6 +29,7 @@ public class BoardDetailViewController extends SuperClass{
 	private ModelAndView mav = null ;
 	private String redirect = "redirect:/boList.bo" ;
 	
+	
 	@Autowired
 	@Qualifier("bdao")
 	private BoardDao bdao ;
@@ -37,6 +38,8 @@ public class BoardDetailViewController extends SuperClass{
 		super("boDetailView", "boList");
 		this.mav = new ModelAndView();
 	}
+
+
 	
 	@GetMapping(command)
 	public ModelAndView doGet(
@@ -49,10 +52,15 @@ public class BoardDetailViewController extends SuperClass{
 		
 		Board bean = bdao.SelectDataByPk(co_seq) ;
 		
+	
+		
 		FlowParameters parameters 
 			= new FlowParameters(pageNumber, pageSize, mode, keyword);
 		
 		System.out.println(this.getClass() + " : " + parameters.toString());
+	
+		
+		
 		
 		if (bean != null) { 
 			// 작성자의 게시물이 아니면 조회수를 +1 증가시킵니다.
@@ -76,7 +84,12 @@ public class BoardDetailViewController extends SuperClass{
 			// 다음과 같이 코딩하면 request와 response 객체가 그대로 다시 넘어 갑니다.
 			this.mav.setViewName(this.redirect);
 		}
+		
+
+		
 		return this.mav ;
+		
+		
 	}
 	
 	@PostMapping
@@ -84,5 +97,7 @@ public class BoardDetailViewController extends SuperClass{
 		return this.mav;
 	}
 
+	
+	
 	
 }
