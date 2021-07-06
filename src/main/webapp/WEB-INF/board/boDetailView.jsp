@@ -13,8 +13,7 @@
 			//alert('${requestScope.parameter}') ;
 		}
 		
-		func
-		tion addNewItem(b_cnum, email, content, regdate) {
+		function addNewItem(b_cnum, email, content, regdate) {
 			/* 댓글 1개를 추가해 주는 함수 */
 			var litag = $("<li>"); // 새로운 글이 추가될 li태그 객체
 			litag.addClass("comment_item");
