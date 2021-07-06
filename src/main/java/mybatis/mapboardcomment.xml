@@ -4,4 +4,14 @@
 
 <mapper namespace="MapperBoardComment">
 
+<!-- 댓글 조회 -->
+	<select id="readComment" parameterType="Integer" resultType="MyCoComment">
+	 <![CDATA[
+		select b_cnum, content, email, regdate, co_seq 
+		from co_comment
+		where co_seq = #{co_seq}
+		order by b_cnum desc
+		]]>
+	</select>
+
 </mapper>

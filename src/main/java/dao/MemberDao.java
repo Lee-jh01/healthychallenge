@@ -17,19 +17,59 @@ public class MemberDao {
 	SqlSessionTemplate abcd;
 	
 	public MemberDao() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public Member SelectData(String email, String password) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("email", email);
 		map.put("password", password);
-		System.out.println("DAO!!");
 		return this.abcd.selectOne(namespace + "SelectData", map);
+	}
+	
+	public int emailCheck(String email) {
+		return this.abcd.selectOne(namespace + "emailCheck",email);
 	}
 	
 	public Member SelectDataByPk(String email) {
 		// 아이디 정보를 이용하여 회원을 찾아 줍니다.
 		return this.abcd.selectOne(namespace + "SelectDataByPk", email);
+	}
+
+	public void insertData(Member member) {
+		this.abcd.insert(namespace + "insertData", member);
+	}
+
+	public int GetKey(String email, String key) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("email", email);
+		map.put("key", key);
+		return this.abcd.update(namespace + "GetKey", map);
+	}
+	
+	public int AlterStatus(String email, String key) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("email", email);
+		map.put("key", key);
+		return this.abcd.update(namespace + "AlterStatus", map);
+	}
+
+	public String StatusCheck(String email) {
+		return this.abcd.selectOne(namespace + "StatusCheck", email);
+	}
+
+	public String searchEmail(String name, String birth) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("name", name);
+		map.put("birth", birth);
+		return this.abcd.selectOne(namespace+"searchEmail",map);
+	}
+	
+	// 회원 임시 비밀번호 변경 메서드
+	public int searchPassword(String email, String birth, String key) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("email", email);
+		map.put("birth", birth);
+		map.put("key", key);
+		return this.abcd.update(namespace+"searchPassword",map);
 	}
 }

@@ -10,6 +10,10 @@
 <% 
     request.setCharacterEncoding("UTF-8"); //한글깨짐 방지 문자셋 설정
 %>
+<c:set var="contextPath" value="<%=request.getContextPath()%>" scope="application"/> 
+<%
+	String contextPath = request.getContextPath();
+%>
 
 <!-- whologin 변수는 로그인 상태를 저장하고 있는 변수입니다. -->
 <c:set var="whologin" value="0" />
@@ -36,25 +40,15 @@
 	String NoForm = null ;
 %>
 <%
-int myoffset = 2;
-int mywidth = twelve - 2 * myoffset;
-int formleft = 3;
-int formright = twelve - formleft;
-int mysearch = 2;
-//int label = 3 ; //양식의 왼쪽에 보여지는 라벨의 너비 
-//int content = twelve - label ; //우측의 내용 입력(input, select, textarea)의 너비
+	int myoffset = 2;
+	int mywidth = twelve - 2 * myoffset;
+	int formleft = 3;
+	int formright = twelve - formleft;
+	int mysearch = 2;
+	//int label = 3 ; //양식의 왼쪽에 보여지는 라벨의 너비 
+	//int content = twelve - label ; //우측의 내용 입력(input, select, textarea)의 너비
 %>
 
-<%
-	String contextPath = request.getContextPath() ;
-	//String mappingName = "/Shopping"; //서블릿에 정의되어 있슴
-	
-	//폼 태그에서 사용할 변수
-	//YesForm = contextPath + mappingName ;
-	
-	//폼이 아닌 곳에서 사용할 변수
-	//NoForm = contextPath + mappingName + "?command=" ;
-%>
 
 <%	
 	// 파일 업로드 관련
@@ -62,7 +56,7 @@ int mysearch = 2;
 	String uri = request.getRequestURI() ;
 	int idx = myurl.indexOf( uri ) ;	
 	//웹서버에 올릴 이미지의 저장 경로 
-	String uploadPath = "/upload" ;//개발자가 임의 지정 가능
+	String uploadPath = "/WEB-INF/photo" ;//개발자가 임의 지정 가능
 	String uploadedFolder 
 		= myurl.substring(0, idx) + request.getContextPath() + uploadPath ;	
 	String realPath = application.getRealPath( uploadPath ) ;
@@ -88,23 +82,22 @@ int mysearch = 2;
 	}
 %>
 
-<c:set var="contextPath" value="<%=request.getContextPath()%>" scope="application"/> 
 
 
 <!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="challenge">
-    <meta name="keywords" content="healthy, challenge, meal, exercise">
+   <meta charset="UTF-8">
+    <meta name="description" content="Healthy">
+    <meta name="keywords" content="Healthy, Challenge, Meal, Community">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>작심 챌린지</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-	<script src="https://kit.fontawesome.com/c74c7ac0ae.js" crossorigin="anonymous"></script>
+
     <!-- Css Styles -->
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="bootstrap/css/font-awesome.min.css" type="text/css">
@@ -115,13 +108,14 @@ int mysearch = 2;
     <link rel="stylesheet" href="bootstrap/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="bootstrap/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="bootstrap/css/style.css" type="text/css">
-    
+
     <!-- favicon 오류 해결 -->
     <link rel="shortcut icon" href="#">
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ 	<!-- bootstrap 추가 라이브러리 -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    
+    <!-- JQUERY CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     
     
     
@@ -137,7 +131,7 @@ int mysearch = 2;
     <header class="header-section">
         <div class="header-top">
             <div class="container">
-                <div class="ht-left">
+                <!-- <div class="ht-left">
                     <div class="mail-service">
                         <i class=" fa fa-envelope"></i>
                         hello.colorlib@gmail.com
@@ -146,17 +140,21 @@ int mysearch = 2;
                         <i class=" fa fa-phone"></i>
                         +65 11.188.888
                     </div>
-                </div> 
+                </div>  -->
                 <div class="ht-right">
-                    <li><c:if test="${empty sessionScope.loginfo}">
-							<a href="<%=contextPath%>/meLogin.me"><span
-								class="glyphicon glyphicon-log-in"> 로그인 </span> </a>
+                	<div>
+                    	<c:if test="${empty sessionScope.loginfo}">
+							<a href="${contextPath }/meLogin.me">
+								<span style="color:gray;">로그인 </span> 
+							</a>
 						</c:if> <c:if test="${not empty sessionScope.loginfo}">
-							<a href="<%=contextPath%>/logout.me"><span
-								class="glyphicon glyphicon-log-in"> 로그 아웃 </span> </a>
-						</c:if></li>
+							<a href="${contextPath }/logout.me">
+								<span style="color:gray;"> 로그아웃 </span> 
+							</a>
+						</c:if>
+					</div>
 						
-                    <div class="lan-selector">
+                <!--<div class="lan-selector">
                         <select class="language_drop" name="countries" id="countries" style="width:300px;">
                             <option value='yt' data-image="bootstrap/img/flag-1.jpg" data-imagecss="flag yt"
                                 data-title="English">English</option>
@@ -169,29 +167,33 @@ int mysearch = 2;
                         <a href="#"><i class="ti-twitter-alt"></i></a>
                         <a href="#"><i class="ti-linkedin"></i></a>
                         <a href="#"><i class="ti-pinterest"></i></a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
-        </div>
-    <div class="container">
+        </div> 
+        <div class="container">
             <div class="inner-header">
-               <div class="col-lg-2 col-md-2 w-50 mx-auto">
-                        <div class="logo">
-                            <a href="./main.co">
-                                <img src="bootstrap/img/logo.png" alt="">
-                            </a> 
-                        </div>
+                <div class="row">
+                   <!--  <div class="col-lg-2 col-md-2 w-20 mx-auto"> -->
+                   <div class="col-lg-2 col-md-2">
+	                 <div class="logo">
+	                     <a href="./main.co">
+	                         <img src="bootstrap/img/logo.png" alt="로고">
+	                     </a> 
+	                 </div>
+	             	</div>
+                     <div class="col-lg-6 col-md-6">  
+                    <!-- <div class="col-lg-7 col-md-7"> -->
                     </div>
-                    <div class="col-lg-3 text-right col-md-3">
+                   <div class="col-lg-3 text-right col-md-3">
+                    <!-- <div class="col-lg-4 text-right col-md-4"> -->
                         <ul class="nav-right">
-                            <li class="heart-icon">
-                                <a href="#">
+                            <li class="heart-icon"><a href="#">
                                     <i class="icon_heart_alt"></i>
                                     <span>1</span>
                                 </a>
                             </li>
-                            <li class="cart-icon">
-                                <a href="#">
+                            <li class="cart-icon"><a href="#">
                                     <i class="icon_bag_alt"></i>
                                     <span>3</span>
                                 </a>
@@ -242,8 +244,25 @@ int mysearch = 2;
                 </div>
             </div>
         </div>
+        
         <div class="nav-item">
             <div class="container">
+                <div class="nav-depart">
+                    <div class="depart-btn">
+                        <i class="ti-menu"></i>
+                        <span>All departments</span>
+                        <ul class="depart-hover">
+                            <li class="active"><a href="#">Women’s Clothing</a></li>
+                            <li><a href="#">Men’s Clothing</a></li>
+                            <li><a href="#">Underwear</a></li>
+                            <li><a href="#">Kid's Clothing</a></li>
+                            <li><a href="#">Brand Fashion</a></li>
+                            <li><a href="#">Accessories/Shoes</a></li>
+                            <li><a href="#">Luxury Brands</a></li>
+                            <li><a href="#">Brand Outdoor Apparel</a></li>
+                        </ul>
+                    </div>
+                </div>
                 <nav class="nav-menu mobile-menu">
                     <ul>
                         <li class="active"><a href="./main.co">메인</a></li>
@@ -283,5 +302,6 @@ int mysearch = 2;
         </div>
     </header>
     <!-- Header End -->
+        
 </body>
 </html>

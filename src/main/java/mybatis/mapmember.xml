@@ -16,6 +16,35 @@
 		<include refid="myselect" />
 		 where email = #{email}
 	</select>	
+	
+	<select id="emailCheck" parameterType="String" resultType="Integer">
+		select count(*) from member where email = #{email}
+	</select>
+	
+	<insert id="insertData" parameterType="MyMember">
+		insert into member (email, password, name, birth, gender, nickname, photo, height, weight, authstatus) 
+		values (#{email}, #{password}, #{name}, #{birth}, #{gender}, #{nickname}, #{photo}, #{height}, #{weight}, #{authstatus})
+	</insert>
+	
+	<update id="GetKey" parameterType="Map">
+		update member set authkey = #{key} where email = #{email}
+	</update>
+	
+	<update id="AlterStatus" parameterType="Map">
+		update member set authstatus = 1 where email = #{email} and authkey = #{key}
+	</update>
+	
+	<select id="StatusCheck" parameterType="String" resultType="String">
+		select authstatus from member where email = #{email}
+	</select>
+	
+	<select id="searchEmail" parameterType="Map" resultType="String">
+		select email from member where name = #{name} and birth = #{birth} and authstatus = '1'
+	</select>
+	
+	<update id="searchPassword" parameterType="Map">
+		update member set password = #{key} where email = #{email} and birth = #{birth} and authstatus = '1'
+	</update>
 
 <!--  
 	<insert id="InsertData" parameterType="MyMember">

@@ -1,5 +1,7 @@
 package bean;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Member {
 	
 	private String email;
@@ -8,13 +10,15 @@ public class Member {
 	
 	private String name;
 	
-	private String brith;
+	private String birth;
 	
 	private int gender;
 	
 	private String nickname;
 	
-	private String photo;
+	private MultipartFile abcd;
+	
+	private String photo; //업로드 관련 항목
 	
 	private double height;
 	
@@ -23,6 +27,10 @@ public class Member {
 	private String authstatus;
 	
 	private String authkey;
+	
+	public Member() {
+		
+	}
 
 	public String getEmail() {
 		return email;
@@ -48,13 +56,6 @@ public class Member {
 		this.name = name;
 	}
 
-	public String getBrith() {
-		return brith;
-	}
-
-	public void setBrith(String brith) {
-		this.brith = brith;
-	}
 
 	public int getGender() {
 		return gender;
@@ -70,6 +71,14 @@ public class Member {
 
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
+	}
+
+	public MultipartFile getAbcd() {
+		return abcd;
+	}
+
+	public void setAbcd(MultipartFile abcd) {
+		this.abcd = abcd;
 	}
 
 	public String getPhoto() {
@@ -112,31 +121,26 @@ public class Member {
 		this.authkey = authkey;
 	}
 
-	@Override
-	public String toString() {
-		return "Member [email=" + email + ", password=" + password + ", name=" + name + ", brith=" + brith + ", gender="
-				+ gender + ", nickname=" + nickname + ", photo=" + photo + ", height=" + height + ", weight=" + weight
-				+ ", authstatus=" + authstatus + ", authkey=" + authkey + "]";
+	public String getBirth() {
+		return birth;
 	}
 
-	public Member(String email, String password, String name, String brith, int gender, String nickname, String photo,
-			double height, double weight, String authstatus, String authkey) {
-		super();
-		this.email = email;
-		this.password = password;
-		this.name = name;
-		this.brith = brith;
-		this.gender = gender;
-		this.nickname = nickname;
-		this.photo = photo;
-		this.height = height;
-		this.weight = weight;
-		this.authstatus = authstatus;
-		this.authkey = authkey;
+	public void setBirth(String birth) {
+		this.birth = birth;
 	}
+
+	@Override
+	public String toString() {
+		return "Member [email=" + email + ", password=" + password + ", name=" + name + ", birth=" + birth + ", gender="
+				+ gender + ", nickname=" + nickname + ", abcd=" + abcd + ", photo=" + photo + ", height=" + height
+				+ ", weight=" + weight + ", authstatus=" + authstatus + ", authkey=" + authkey + "]";
+	}
+
+
+
 	
-	public Member() {
-		
-	}
+	
+	
+
 
 }
