@@ -10,6 +10,10 @@
 <% 
     request.setCharacterEncoding("UTF-8"); //한글깨짐 방지 문자셋 설정
 %>
+<c:set var="contextPath" value="<%=request.getContextPath()%>" scope="application"/> 
+<%
+	String contextPath = request.getContextPath();
+%>
 
 <!-- whologin 변수는 로그인 상태를 저장하고 있는 변수입니다. -->
 <c:set var="whologin" value="0" />
@@ -36,25 +40,15 @@
 	String NoForm = null ;
 %>
 <%
-int myoffset = 2;
-int mywidth = twelve - 2 * myoffset;
-int formleft = 3;
-int formright = twelve - formleft;
-int mysearch = 2;
-//int label = 3 ; //양식의 왼쪽에 보여지는 라벨의 너비 
-//int content = twelve - label ; //우측의 내용 입력(input, select, textarea)의 너비
+	int myoffset = 2;
+	int mywidth = twelve - 2 * myoffset;
+	int formleft = 3;
+	int formright = twelve - formleft;
+	int mysearch = 2;
+	//int label = 3 ; //양식의 왼쪽에 보여지는 라벨의 너비 
+	//int content = twelve - label ; //우측의 내용 입력(input, select, textarea)의 너비
 %>
 
-<%
-	String contextPath = request.getContextPath() ;
-	//String mappingName = "/Shopping"; //서블릿에 정의되어 있슴
-	
-	//폼 태그에서 사용할 변수
-	//YesForm = contextPath + mappingName ;
-	
-	//폼이 아닌 곳에서 사용할 변수
-	//NoForm = contextPath + mappingName + "?command=" ;
-%>
 
 <%	
 	// 파일 업로드 관련
@@ -62,7 +56,7 @@ int mysearch = 2;
 	String uri = request.getRequestURI() ;
 	int idx = myurl.indexOf( uri ) ;	
 	//웹서버에 올릴 이미지의 저장 경로 
-	String uploadPath = "/upload" ;//개발자가 임의 지정 가능
+	String uploadPath = "/WEB-INF/photo" ;//개발자가 임의 지정 가능
 	String uploadedFolder 
 		= myurl.substring(0, idx) + request.getContextPath() + uploadPath ;	
 	String realPath = application.getRealPath( uploadPath ) ;
@@ -88,23 +82,22 @@ int mysearch = 2;
 	}
 %>
 
-<c:set var="contextPath" value="<%=request.getContextPath()%>" scope="application"/> 
 
 
 <!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="challenge">
-    <meta name="keywords" content="healthy, challenge, meal, exercise">
+   <meta charset="UTF-8">
+    <meta name="description" content="Healthy">
+    <meta name="keywords" content="Healthy, Challenge, Meal, Community">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>작심 챌린지</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-	<script src="https://kit.fontawesome.com/c74c7ac0ae.js" crossorigin="anonymous"></script>
+
     <!-- Css Styles -->
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="bootstrap/css/font-awesome.min.css" type="text/css">
@@ -115,20 +108,21 @@ int mysearch = 2;
     <link rel="stylesheet" href="bootstrap/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="bootstrap/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="bootstrap/css/style.css" type="text/css">
-    
+
     <!-- favicon 오류 해결 -->
     <link rel="shortcut icon" href="#">
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ 	<!-- bootstrap 추가 라이브러리 -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    
+    <!-- JQUERY CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     
     
     
 </head>
 
 <body>
-	<!-- Page Preloder -->
+   <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
     </div>
@@ -156,12 +150,12 @@ int mysearch = 2;
             
           <div class="ht-right" align="right">
                     <li><c:if test="${empty sessionScope.loginfo}">
-							<a href="<%=contextPath%>/meLogin.me"><span
-								class="glyphicon glyphicon-log-in"> 로그인 </span> </a>
-						</c:if> <c:if test="${not empty sessionScope.loginfo}">
-							<a href="<%=contextPath%>/logout.me"><span
-								class="glyphicon glyphicon-log-in"> 로그 아웃 </span> </a>
-						</c:if></li>
+                     <a href="<%=contextPath%>/meLogin.me"><span
+                        class="glyphicon glyphicon-log-in"> 로그인 </span> </a>
+                  </c:if> <c:if test="${not empty sessionScope.loginfo}">
+                     <a href="<%=contextPath%>/logout.me"><span
+                        class="glyphicon glyphicon-log-in"> 로그 아웃 </span> </a>
+                  </c:if></li>
                 </div>
        
         <div class="nav-item">
@@ -174,16 +168,16 @@ int mysearch = 2;
                         <li><a href="#">마이 페이지</a></li>
                         <li><a href="#">오늘의 기록</a></li>
                         <li><a href="#">&emsp;식단&emsp;</a>
-                        	<ul class="dropdown">
-                        	<li><a href="#">기록</a></li>
+                           <ul class="dropdown">
+                           <li><a href="#">기록</a></li>
                             <li><a href="#">통계</a></li>
-                        	</ul>
+                           </ul>
                         </li>
                         <li><a href="#">&emsp;운동&emsp;</a>
-                        	<ul class="dropdown">
-                        	<li><a href="#">기록</a></li>
+                           <ul class="dropdown">
+                           <li><a href="#">기록</a></li>
                             <li><a href="#">통계</a></li>
-                        	</ul>
+                           </ul>
                         </li>
                         
                         <li><a href="<%=contextPath%>/boList.bo">커뮤니티</a></li>
@@ -192,8 +186,8 @@ int mysearch = 2;
                         
                         
                         
-                 	 </ul>
-               	 </nav>
+                     </ul>
+                   </nav>
                 <div id="mobile-menu-wrap"></div>
             </div>
         </div>

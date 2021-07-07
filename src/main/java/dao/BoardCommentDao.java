@@ -1,5 +1,6 @@
 package dao;
 
+
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -17,6 +18,9 @@ public class BoardCommentDao {
 	
 	public BoardCommentDao() {}
 	
-	
-	
+
+	public List<CoComment> readComment(int co_seq){
+		return abcd.selectList(namespace + "readComment", co_seq);
+	}
+
 }

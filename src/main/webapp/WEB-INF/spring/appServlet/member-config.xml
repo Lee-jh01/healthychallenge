@@ -10,6 +10,7 @@
 		
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven />
+	<resources mapping="/resources/**" location="/resources/" />
 		
 	<!-- controller라는 패키지에서 컨트롤러를 검색합니다. -->		
 	<context:component-scan base-package="member.controller" />
@@ -19,5 +20,32 @@
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/member/" />
 		<beans:property name="suffix" value=".jsp" />
-	</beans:bean>		
+	</beans:bean>
+	
+	<!-- for file upload bean -->
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10485760" />
+		<beans:property name="maxInMemorySize" value="10240" />
+		<beans:property name="defaultEncoding" value="UTF-8" />
+	</beans:bean>
+	
+	<!-- 회원가입 메일 인증 -->
+	<beans:bean id="mailSender"	class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<beans:property name="host" value="smtp.gmail.com" />
+		<beans:property name="port" value="587" /><!-- 465 or 25 -->
+		<beans:property name="username" value="bitcamp0712@gmail.com" />
+		<beans:property name="password" value="bye12345@" />
+		<beans:property name="defaultEncoding" value="utf-8" />
+		<beans:property name="javaMailProperties">
+			<beans:props>
+				<beans:prop key="mail.transport.protocol">smtp</beans:prop>
+				<beans:prop key="mail.smtp.auth">true</beans:prop>
+				<beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
+				<beans:prop key="mail.debug">true</beans:prop>
+			</beans:props>
+			
+		</beans:property>
+	</beans:bean>
+	
 </beans:beans>
