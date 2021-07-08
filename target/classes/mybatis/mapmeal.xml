@@ -3,5 +3,25 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="MapperMeal">
-
+	<select id="selectDataStarList" parameterType="String" resultType="MyFood">
+		select * from myfood where email = #{email}
+	</select>
+	
+	<delete id="deleteStarData" parameterType="Integer">
+		delete from myfood where mf_seq = #{num}
+	</delete>
+	
+	<insert id="addStarData" parameterType="MyFood">
+		insert into myfood 
+		(mf_seq, email, food_name, serving_wt, calorie, carbohydrate, protein, fat, na)
+		values 
+		(mf_seq.nextval, #{email}, #{food_name}, #{serving_wt}, #{calorie}, #{carbohydrate}, #{protein}, #{fat}, #{Na} )
+	</insert>
+	
+	<insert id="insertMyFood" parameterType="MyFood">
+		insert into myfood 
+		(mf_seq, email, food_name, serving_wt, calorie, carbohydrate, protein, fat, na)
+		values 
+		(mf_seq.nextval, #{email}, #{food_name}, #{serving_wt}, #{calorie}, #{carbohydrate}, #{protein}, #{fat}, #{Na} )	
+	</insert>
 </mapper>

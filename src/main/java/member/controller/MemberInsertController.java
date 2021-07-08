@@ -70,6 +70,7 @@ public class MemberInsertController extends SuperClass {
 			try {
 				if(multi.isEmpty()) {
 					member.setPhoto("basicimage.jpg");
+					System.out.println("여기에 들어왔습니다.");
 				}else {
 					// 업로드 폴더에 파일을 업로드 합니다.
 					File destination = Utility.getUploadedFileInfo(multi, realPath);
@@ -78,6 +79,7 @@ public class MemberInsertController extends SuperClass {
 					// 원래 이미지에 날짜를 붙인 새 이미지 이름
 					member.setPhoto(destination.getName());
 					System.out.println(realPath);
+					System.out.println("여기도!! : "+destination.getName());
 				}
 				
 				// 암호화! - 암호 확인

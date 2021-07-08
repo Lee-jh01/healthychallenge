@@ -90,10 +90,10 @@ public class Paging {
 			//result += "맨처음&nbsp;&nbsp;";
 			//result += "이전&nbsp;&nbsp;";			
 		} else {
-			result += "<li class=\"page-link\"><a class=\"page-link\" href='" + url + "?pageNumber=" + 1 + 
+			result += "<li class=\"page-item\"><a class=\"page-link\" href='" + url + "?pageNumber=" + 1 + 
 				"&pageSize=" + pageSize + add_param + "'>맨처음</a></li>&nbsp;&nbsp;";
 			
-			result += "<li class=\"page-link\"><a class=\"page-link\" href='" + url + "?pageNumber=" + (beginPage - 1) + 
+			result += "<li class=\"page-item\"><a class=\"page-link\" href='" + url + "?pageNumber=" + (beginPage - 1) + 
 				"&pageSize=" + pageSize + add_param + "'>이전</a></li>&nbsp;&nbsp;";
 		}		
 		//페이지 시작 번호 부터 ~ 끝 번호 까지 표시
@@ -112,10 +112,10 @@ public class Paging {
 			//result += "다음&nbsp;&nbsp;";
 			//result += "맨 끝&nbsp;&nbsp;";	
 		} else {			
-			result += "<li><a href='" + url + "?pageNumber=" + (endPage + 1) + 
+			result += "<li class='page-item'><a class='page-link' href='" + url + "?pageNumber=" + (endPage + 1) + 
 				"&pageSize=" + pageSize + add_param + "'>다음</a></li>&nbsp;&nbsp;";
 			
-			result += "<li><a href='" + url + "?pageNumber=" + totalPage + 
+			result += "<li class='page-item'><a class='page-link' href='" + url + "?pageNumber=" + totalPage + 
 				"&pageSize=" + pageSize + add_param + "'>맨 끝</a></li>";
 		}
 		result += "</ul>"; 
@@ -164,6 +164,10 @@ public class Paging {
 
 	public void setLimit(int limit) {
 		this.limit = limit;
-	}	 
+	}
+
+
+	
+	
 	
 }
