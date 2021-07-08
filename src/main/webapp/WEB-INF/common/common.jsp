@@ -114,11 +114,42 @@
     
  	<!-- bootstrap 추가 라이브러리 -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	
+	
+	
     <!-- JQUERY CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     
-    
-    
+    <script type="text/javascript">
+    	$(document).ready(function(){
+    		$('#Progress_Loading').hide(); // 첫 시작시 로딩바를 숨겨준다.
+    		
+    	 	$(document).ajaxStart(function(){
+        		$('#Progress_Loading').show(); // ajax 실행시 로딩바를 보여준다.
+	        })
+	        $(document).ajaxStop(function(){
+	       		$('#Progress_Loading').hide(); //ajax 종료시 로딩바를 숨겨준다.
+	       	}) 
+    	})
+    	
+    </script>
+    <style type = "text/css"> <!-- 로딩바스타일 -->
+		body
+		{
+			 
+		}
+		#Progress_Loading
+		{		
+			 text-align: center;
+			 z-index : 1;
+			 position: absolute;
+			 left: 50%;
+			 top: 50%;
+			 background: #ffffff;
+		}
+	</style>
 </head>
 
 <body>
@@ -126,13 +157,17 @@
     <div id="preloder">
         <div class="loader"></div>
     </div>
+    
+    <!-- Ajax Page Loadingbar --> 
+     <div id = "Progress_Loading"><!-- 로딩바 -->
+		<img src="${contextPath}/picture/loadingbar.gif"/>
+	</div> 
+	
 
  <!-- Header Section Begin -->
     <header class="header-section">
         <div class="header-top">
             <div class="container">
-             
-               
             </div>
         </div>
     <div class="container">
@@ -156,7 +191,7 @@
                      <a href="<%=contextPath%>/logout.me"><span
                         class="glyphicon glyphicon-log-in"> 로그 아웃 </span> </a>
                   </c:if></li>
-                </div>
+          </div>
        
         <div class="nav-item">
             <div class="container">
@@ -169,7 +204,7 @@
                         <li><a href="#">오늘의 기록</a></li>
                         <li><a href="#">&emsp;식단&emsp;</a>
                            <ul class="dropdown">
-                           <li><a href="#">기록</a></li>
+                           <li><a href="${contextPath}/daily.ml">기록</a></li>
                             <li><a href="#">통계</a></li>
                            </ul>
                         </li>
@@ -183,9 +218,6 @@
                         <li><a href="<%=contextPath%>/boList.bo">커뮤니티</a></li>
                         <li><a href="<%=contextPath%>/qnaList.qa">Q & A </a></li>
                        
-                        
-                        
-                        
                      </ul>
                    </nav>
                 <div id="mobile-menu-wrap"></div>

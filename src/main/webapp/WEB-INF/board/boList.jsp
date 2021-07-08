@@ -62,6 +62,7 @@ ul.pagination.pagination-sm {
 						</div>
 					</div>
 				</div>
+				<div class="p-3 mb-0"><p class="mb-0">${pagingStatus }</p></div>
 				<input type="hidden" name="mode" id ="mode" value="" >
 				<div class="p-2"><input class="form-control" type="text" id="keyword" name="keyword" placeholder="제목 / 내용 / 작성자"></div>
 				<div class="p-2"><button type="submit" class="btn btn-warning"><i class="fas fa-search pt-2"></i></button></div>

@@ -52,15 +52,11 @@ public class BoardDetailViewController extends SuperClass{
 		
 		Board bean = bdao.SelectDataByPk(co_seq) ;
 		
-	
-		
 		FlowParameters parameters 
 			= new FlowParameters(pageNumber, pageSize, mode, keyword);
 		
 		System.out.println(this.getClass() + " : " + parameters.toString());
 	
-		
-		
 		
 		if (bean != null) { 
 			// 작성자의 게시물이 아니면 조회수를 +1 증가시킵니다.

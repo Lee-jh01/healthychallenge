@@ -110,91 +110,189 @@
 				<hr>
 				<!-- 댓글 영역 -->
 				<h4>댓글 ( <span id ="count">0</span> )</h4>
-			<div id = "comment_write">
-				<form id="comment_form" action="" method="post" role="form" class="form-horizontal" >
-					<div class="form-group">
-						<label for="email" class="form-control-label">작성자</label>
-						<div>
-							<input type="hidden" name="co_seq" value="${bean.co_seq}" />
-							<input type="text" name="nickname" id="nickname" class="form-control" disabled="disabled" value="${sessionScope.loginfo.nickname}">	
-							<input type="hidden" name="email" id="email" value="${sessionScope.loginfo.email}">							
+				<br>
+				<div class="card">
+					<div class="card-body">
+						<div id = "comment_write">
+							<form id="comment_form" name="comment_form" method="post" class="form-horizontal" >
+								<div class="row">
+									<div class = "col-5">
+										<label for = "email" class = "form-control-label align-middle">작성자 :&nbsp;&nbsp;
+										 	<span class="font-weight-bolder">${sessionScope.loginfo.nickname}</span></label>
+									</div>
+									<div>
+										<input type="hidden" name="co_seq" value="${bean.co_seq}" />
+										<input type="hidden" name="email" id="email" value="${sessionScope.loginfo.email}">		
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="row">
+										<div class = "col-10">
+											<textarea name="content" rows="6" id="content" class="form-control" placeholder="댓글 내용"></textarea>
+										</div>	
+										<div class = "col-2">
+											<input type = "button" value="댓글 등록" onclick="to_ajax_form();" style="width:100%; height:100%;" class="btn btn-danger">
+										</div> 
+									</div>
+								</div>       		
+							</form>
 						</div>
 					</div>
-					<div class="form-group">
-						<label for="content" class="form-control-label">덧글 내용</label>
-						<div class="row">
-							<div class = "col-10">
-								<textarea name="content" rows="6" id="content" class="form-control"></textarea>
-							</div>	
-							<div class = "col-2">
-								<button type="submit" style="width:100%; height:100%;" class="btn btn-info">
-									댓글 등록
-								</button> 
-							</div> 
-						</div>
-					</div>       		
-				</form>
-			</div>
-			<div>
-				<ul id="comment_list">
-				</ul>
-			</div>	
-				
-			<div class="col-sm-12">			
-				<table id="commentListTable" border="1">
-				</table>		
- 			<!-- 	<ul id="comment_list">
-					여기에 동적 생성 요소가 들어가게 됩니다.
-				</ul>  -->
-				<div id="comment_write">
-					<form id="comment_form" action="" method="post" role="form" class="form-horizontal" >
-						<div class="form-group">
-							<label for="email" class="form-control-label">작성자</label>
-							<div class="col-xs-4 col-lg-4">
-								<input type="hidden" name="co_seq" value="${bean.co_seq}" />
-								<input type="text" name="nickname" id="nickname" class="form-control" disabled="disabled" value="${sessionScope.loginfo.nickname}">	
-								<input type="hidden" name="email" id="email" value="${sessionScope.loginfo.email}">							
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="content" class="form-control-label">덧글 내용</label>
-							<div class="col-xs-9 col-lg-9">
-								<textarea name="content" rows="3" cols="50" id="content" class="form-control"></textarea> 
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-xs-offset-3 col-xs-2 col-lg-2">
-								<button type="submit" class="btn btn-info">
-									저장하기
-								</button> 
-							</div>
-						</div>	        		
-					</form>
 				</div>
+				<br>
+				<br>
+<!-- 				<div style="overflow-y:scroll; height:500px;"> -->
+				<div>
+					<div id="paging_status"></div>
+					<ul id="comment_list">
+					</ul>
+					<div id = "comment_footer">
+					</div>
+					<input type="hidden" id="pagenum">
+				</div>	
 			</div>
-			</div>
+			<br>
+			<br>
 			
+			 <!-- 댓글 수정하기 Modal -->
+			  <div class="modal fade" id="myModal" data-backdrop="static" data-keyboard="false">
+			    <div class="modal-dialog modal-dialog-centered">
+			      <div class="modal-content">
+			      
+			        <!-- Modal Header -->
+			        <div class="modal-header">
+			          <h4 class="modal-title">댓글 수정하기</h4>
+			          <button type="button" class="close" data-dismiss="modal">×</button>
+			        </div>
+			        
+			        <!-- Modal body -->
+			        <div class="modal-body">
+			          <input type="hidden" id='updateno'>
+			          <textarea class="form-control" id="updatetext"></textarea>
+			        </div>
+			        
+			        <!-- Modal footer -->
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-danger" onclick="updateComment();">댓글 수정</button>
+			        </div>
+			        
+			      </div>
+			    </div>
+			  </div>
 <%@ include file="../common/footer.jsp" %>
 	<script>
+		function to_ajax_form(){
+			var queryString = $('form[name=comment_form]').serialize();
+			$.ajax({
+				async : false,
+				type : 'post',
+				url :  '${contextPath }/insertComment.bo',
+				data : queryString,
+				error : function(err){
+					console.log("error발생"+err);
+				},
+				success : function(data){
+					alert('댓글이 등록 되었습니다');
+					getList(0);
+					$('#content').val('');
+				}
+			});
+		}
+		
 		function deletenum(num){
-			alert(num);
+			$.ajax({
+				url : '${contextPath}/selectComment.bo',
+				data : {'b_cnum' : num},
+				dataType : 'json',
+				type : 'post',
+				success : function(data){
+				//	console.log(JSON.stringify(data));
+				//	console.log(data.bean.content)
+				
+					if('${sessionScope.loginfo.email}'!= data.bean.email){
+						alert('삭제 권한이 없습니다')
+					}else{
+						if(confirm("정말 삭제하시겠습니까?")){
+							$.ajax({
+								url :'${contextPath}/deleteComment.bo',
+								data : {'b_cnum' : num},
+								type : 'get',
+								success : function(data){
+									alert('댓글이 삭제 되었습니다.')
+								}
+							})
+							getList($('#pagenum').val())		
+						}else{
+							
+						}
+					}
+				},error:function(err){
+					console.log("error발생"+err);
+				}
+			})
+
+			
 		}
 		
 		function updatenum(num){
-			alert(num);
+			$.ajax({
+				url : '${contextPath}/selectComment.bo',
+				data : {'b_cnum' : num},
+				dataType : 'json',
+				type : 'post',
+				success : function(data){
+				//	console.log(JSON.stringify(data));
+				//	console.log(data.bean.content)
+					$('#updateno').val(data.bean.b_cnum)
+					$('#updatetext').val(data.bean.content);
+				
+					if('${sessionScope.loginfo.email}'!= data.bean.email){
+						alert('수정 권한이 없습니다')
+					}else{
+						$("#myModal").modal();
+					}
+				},error:function(err){
+					console.log("error발생"+err);
+				}
+			})
+		
 		}
 		
-		function getList(){
+		function updateComment(){
+			$.ajax({
+				url : '${contextPath}/updateComment.bo',
+				data : {'b_cnum' : $('#updateno').val(),
+					'content' : $('#updatetext').val()},
+				type : 'post',
+				success : function(data){
+					alert('댓글이 수정되었습니다')
+				}, error : function(err){
+					console.log("error발생"+err);
+				}
+			})
+			$("#myModal").modal("hide");
+			$('#updatetext').val('');
+			$('#updateno').val('');
+			getList($('#pagenum').val())	
+		}
+		
+		
+		function getList(num){
 			$("#comment_list").empty() ;
 			$.ajax({ /* 유효성 검사를 통과 했을 때 Ajax 함수 호출 */
 		        url: '${contextPath}/readComment.bo',
 		        data : 
-		        {'co_seq' : ${bean.co_seq}},
+		        {'co_seq' : ${bean.co_seq},
+		        	'pageNumber' : num},
 		        type : 'post',   
 				dataType : 'json',
 		        success: function(data){
 		        	//console.log(JSON.stringify(data));
-		        	$('#count').text(data.commentcount)  
+		        	//console.log(data.pagingHtml)
+		        	//console.log(data.pagingStatus)
+		        	$('#count').text(data.commentcount)
+		        	$('#paging_status').html("");
+		        	$('<p>').append('<b>'+data.pagingStatus+'</b>').appendTo($('#paging_status'))
 		         	$.each(data.list, function(index, items){
 			        	if('${bean.email}' == items.email){
 				        		$('<li>').append($('<div>',{
@@ -212,7 +310,7 @@
 		         						text : data.mlist[index].nickname
 		         					}).append($('<span>',{
 		         						class : 'badge badge-pill badge-warning text-white font-weight-bolder',
-		         						text : '작성자',
+		         						text : '글쓴이',
 		         						style : 'font-size: 0.7em'
 		         					})).append($('<small>',{
 		         						text : items.regdate,
@@ -251,11 +349,27 @@
 			         				style : 'font-size:0.5em'
 	         					}))).append($('<p>',{
 	         						text : items.content
-	         					}))
+	         					})).append($('<div>',{
+	         						class : 'text-right'
+	         					}).append($('<button>',{
+	         						class : 'btn btn-default',
+	         						text : '수정',
+	         						onclick : 'javascript:updatenum('+ items.b_cnum + ')'
+	         					})).append($('<button>',{
+	         						class : 'btn btn-default',
+	         						text : '삭제',
+	         						onclick : 'javascript:deletenum('+ items.b_cnum + ')'
+	         					})))
          					))).appendTo($('#comment_list'));
 		         		}
 		         	});
 		         
+		        
+		        		
+		        	$('#comment_footer').html(""); //태그 초기화
+		        	$('<footer>').append(data.pagingHtml).appendTo($('#comment_footer')) //태그 추가
+		        	$('#pagenum').val(num);
+		        	
 			},
 			error:function(err){
 				console.log("error발생"+err);
@@ -267,7 +381,7 @@
 		
 		$(document).ready(function() {
 			$('[data-toggle="popover"]').popover();
-			getList();
+			getList(1);
 		})
 	</script>
 </body>

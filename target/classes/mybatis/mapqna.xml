@@ -4,10 +4,11 @@
 
 <mapper namespace="MapperQna">
 
-<sql id="myselect">
-		select qna_seq, email, title, content, readhit, regdate, groupno, orderno, depth
-		from qna
-	</sql> 	
+	<sql id="myselect">
+			select qna_seq, email, title, content, readhit, regdate, groupno, orderno, depth
+			from qna
+	</sql>
+	 	
 	<select id="SelectTotalCount" resultType="Integer">
 		select count(*) as cnt from qna			
 			<if test="keyword != 'all'">
