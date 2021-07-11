@@ -45,4 +45,16 @@
 	<update id="minusCalorie">
 		update exercise_memory set total_calorie = total_calorie - #{calorie} where em_seq = #{em_seq}
 	</update>
+
+
+	<select id="SelectDate" resultType="MyExerciseMemory">
+	select * from exercise_memory where email = #{email} and regdate between #{beforeDate} and #{regdate} ORDER BY regdate asc
+	</select>
+
+	
+	<select id="selectCalorie" parameterType="Map" resultType="double">
+	select nvl(sum(total_calorie),0) from exercise_memory where email= #{email} and regdate = #{regdate}
+	
+	</select>
+
 </mapper>

@@ -1,4 +1,4 @@
-<%@page import="dao.ExerciseDao" %>
+<%@page import="dao.MealDao" %>
 <%@include file="../common/common.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -23,8 +23,7 @@
 		.hasDatepicker{cursor: pointer;}
 	</style>
 
-
-<title>운동기록</title>
+    <title>식단기록</title>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
      
@@ -35,24 +34,20 @@
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable(
-        	${str}	
+        	${str2}	
         );
 
         var options = {
-          title: '한달 소모 칼로리 추이',
-          colors: ['red']
+          title: '한달 섭취 칼로리 추이'
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
 
         chart.draw(data, options);
       }
+      
+      
     </script>
-    
-    
-    
-    
-    
 
 </head>
 <body>
@@ -64,51 +59,62 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
                         <a href="${contextPath}/main.co"><i class="fa fa-home"></i> 메인</a>         
-                        <a href="#"> 운동</a>
+                        <a href="#"> 식단</a>
                         <span>통계</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    
+    
+    
+  <!-- Blog Section Begin -->
     <section class="blog-section spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1">
                     <div class="blog-sidebar">
-     
+                      
                         <div class="blog-catagory">
                             <h4>카테고리</h4>
                             <ul>
                                 <li><a href="<%=contextPath%>/exRecord.ex">기록</a></li>
-                            <li><a href="<%=contextPath%>/exStats.ex">통계</a></li>
+                            <li><a href="<%=contextPath%>/mealStats.ml">통계</a></li>
                                 
                             </ul>
                         </div>
                     </div>
                 </div>
-  
+                
+                
                 <div class="col-lg-9 order-1 order-lg-2">
                 
-                <div class="row">
+                 <div class="row">
 					   			&nbsp;&nbsp;&nbsp;&nbsp;
 						   		<h2 id="dateValue" class="mb-0"></h2>
 						   		&nbsp;&nbsp;&nbsp;&nbsp;
 						   		<input type="hidden" name="regdate" id="datepicker">
 					   		</div>
-                      
-      <div id="chart_div" style="width: 900px; height: 550px; "></div> 
- 	 	<div style="background-color: white;">
+                
+      <div id="chart_div" style="width: 900px; height: 550px; "></div>
+   
+  <div style="background-color: white;">
+  
+  </div>
   	
-  		</div>
- 		 </div>
+ 
+                
+                    
+                </div>
             </div>
-        		</div>
+        </div>
     </section>
+    <!-- Blog Section End -->
+
+
 
 <%@ include file="../common/footer.jsp" %> 
-
 
 <script>
 	    $(function() {
@@ -139,18 +145,15 @@
 	        
 	        $(document).on("change",'#datepicker', function(){
 	        	$('#dateValue').text($('#datepicker').val());
-	        	location.href='${contextPath}/exStats.ex?regdate='+$('#datepicker').val();
+	        	location.href='${contextPath}/mealStats.ml?regdate='+$('#datepicker').val();
 	        })  
 	    });
 	    
 	    
 	    function addData(time){
 	    		//alert(time)
-	    	   	location.href='${contextPath}/exStats.ex?time='+time+'&regdate='+$('#datepicker').val()+'&email='+'${loginfo.email}';
+	    	   	location.href='${contextPath}/mealStats.ml.ex?time='+time+'&regdate='+$('#datepicker').val()+'&email='+'${loginfo.email}';
 	    }
 	</script>
-
-
-
 </body>
 </html>

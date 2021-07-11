@@ -3,9 +3,32 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="MapperMeal">
+
 	<select id="selectDataStarList" parameterType="String" resultType="MyFood">
 		select * from myfood where email = #{email}
 	</select>
+	
+	<select id="SelectDate" parameterType="Map" resultType="HashMap">
+
+select sum(total_calorie) as sum, to_char(regdate,'yyyy/mm/dd') as SUMDAY from meal 
+where email = #{email} 
+and regdate 
+between #{beforeDate} and #{regdate} 
+group by to_char(regdate,'yyyy/mm/dd') 
+order by to_char(regdate,'yyyy/mm/dd') asc 
+
+
+</select>
+
+<select id="selectCalorie" parameterType="Map" resultType="double">
+SELECT nvl(sum(total_calorie),0)
+FROM MEAL where email = #{email} 
+and to_char(regdate,'yyyy/mm/dd') = #{regdate}
+
+
+</select>
+	
+	
 	
 	<delete id="deleteStarData" parameterType="Integer">
 		delete from myfood where mf_seq = #{num}

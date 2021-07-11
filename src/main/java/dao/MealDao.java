@@ -8,7 +8,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import bean.CoComment;
 import bean.Meal;
 import bean.MealMemory;
 import bean.MyFood;
@@ -20,6 +19,8 @@ public class MealDao {
 	SqlSessionTemplate abcd;
 	
 	public MealDao() {}
+	
+	
 
 	public List<MyFood> selectDataStarList(String email) {
 		
@@ -73,4 +74,23 @@ public class MealDao {
 	public int deleteMealMemory(int meal_seq) {
 		return this.abcd.delete(namespace+"deleteMealMemory", meal_seq);
 	}
+	
+	public List<Map<String, Object>> selectDate(String email, String regdate, String beforeDate) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("email", email);
+		map.put("regdate", regdate);
+		map.put("beforeDate", beforeDate);
+		
+		return this.abcd.selectList(namespace + "SelectDate", map);
+	}
+
+
+
+	public double selectCalorie(String email, String regdate) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("email", email);
+		map.put("regdate", regdate);
+		return this.abcd.selectOne(namespace+"selectCalorie", map);
+	}
+
 }

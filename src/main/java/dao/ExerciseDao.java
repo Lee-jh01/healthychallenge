@@ -13,6 +13,7 @@ import bean.ExerciseJoin;
 import bean.ExerciseMemory;
 import bean.ExerciseRelation;
 
+
 @Component("edao")
 public class ExerciseDao {
 	private final String namespace = "MapperExercise." ;	
@@ -70,4 +71,19 @@ public class ExerciseDao {
 		return this.abcd.update(namespace+"minusCalorie",map);
 	}
 
+	public List<ExerciseMemory> SelectDate(String email, String regdate, String beforeDate){
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("email", email);
+		map.put("regdate", regdate);
+		map.put("beforeDate", beforeDate);
+		return this.abcd.selectList(namespace + "SelectDate", map);
+	}
+
+	public double selectCalorie(String email, String regdate) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("email", email);
+		map.put("regdate", regdate);
+		return this.abcd.selectOne(namespace + "selectCalorie", map);
+	}
+	
 }

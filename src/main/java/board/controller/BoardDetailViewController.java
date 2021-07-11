@@ -1,7 +1,5 @@
 package board.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,17 +7,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.Board;
-import bean.CoComment;
 import bean.Member;
 import common.controller.SuperClass;
-import dao.BoardCommentDao;
 import dao.BoardDao;
 import utility.FlowParameters;
 
@@ -66,7 +59,9 @@ public class BoardDetailViewController extends SuperClass{
 			// login : 현재 접속한 사람의 정보를 저장하고 있는 객체입니다.
 			Member login =  (Member)session.getAttribute("loginfo") ;
 			
-			if(bean.getEmail() == null || !bean.getEmail().equals(login.getEmail())) {
+			if(!bean.getEmail().equals(login.getEmail())) {
+				System.out.println("조회수들어온당~~");
+				
 				bdao.UpdateReadhit(co_seq) ;
 			}
 			
