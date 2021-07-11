@@ -72,4 +72,12 @@ public class MemberDao {
 		map.put("key", key);
 		return this.abcd.update(namespace+"searchPassword",map);
 	}
+
+	public int updateStatus(double height, double weight, String email) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("height", height);
+		map.put("weight", weight);
+		map.put("email", email);
+		return this.abcd.update(namespace+"updateStatus",map);
+	}
 }

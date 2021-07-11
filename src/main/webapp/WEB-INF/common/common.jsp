@@ -50,40 +50,6 @@
 %>
 
 
-<%	
-	// 파일 업로드 관련
-	String myurl = request.getRequestURL().toString() ;
-	String uri = request.getRequestURI() ;
-	int idx = myurl.indexOf( uri ) ;	
-	//웹서버에 올릴 이미지의 저장 경로 
-	String uploadPath = "/WEB-INF/photo" ;//개발자가 임의 지정 가능
-	String uploadedFolder 
-		= myurl.substring(0, idx) + request.getContextPath() + uploadPath ;	
-	String realPath = application.getRealPath( uploadPath ) ;
-%>
-<% 
-	/* out.print( "YesForm : " + YesForm + "<br>") ;
-	out.print( "NoForm : " + NoForm + "<br>") ;
-	out.print( "myurl : " + myurl + "<br>") ;
-	out.print( "uploadedFolder : " + uploadedFolder + "<br>") ;
-	out.print( "realPath : " + realPath + "<br>") ; */ 
-%>
-
-<%!
-	String MakeCommand(String ... args){
-		if( args.length == 0 ){
-			return YesForm  ;
-		}else if( args.length == 1 ){
-			return YesForm + "?command=" + args[0]   ;	
-		}else{
-			String imsi = args[1] ;
-			return YesForm + "?command=" + args[0] + "&" + imsi  ;
-		}
-	}
-%>
-
-
-
 <!DOCTYPE html>
 <html>
 
@@ -93,7 +59,7 @@
     <meta name="keywords" content="Healthy, Challenge, Meal, Community">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>작심 챌린지</title>
+    <title>daily helath</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
@@ -136,10 +102,6 @@
     	
     </script>
     <style type = "text/css"> <!-- 로딩바스타일 -->
-		body
-		{
-			 
-		}
 		#Progress_Loading
 		{		
 			 text-align: center;
@@ -148,6 +110,10 @@
 			 left: 50%;
 			 top: 50%;
 			 background: #ffffff;
+		}
+		li
+		{
+			list-style: none;
 		}
 	</style>
 </head>
@@ -164,34 +130,37 @@
 	</div> 
 	
 
- <!-- Header Section Begin -->
-    <header class="header-section">
-        <div class="header-top">
+   <!-- Header Section Begin -->
+  <header class="header-section">
+		<div class="header-top">
             <div class="container">
+	             <div class="ht-right" align="right">
+	                    <li>
+		                   	 <c:if test="${empty sessionScope.loginfo}">
+		                    	 <a href="<%=contextPath%>/meLogin.me" style="color:#3a4ca8;"><span>
+		                        <i class="fa fa-user"></i> &nbsp;로그인 </span> </a>
+			                  </c:if> 
+			                  <c:if test="${not empty sessionScope.loginfo}" >
+			                     <a href="<%=contextPath%>/logout.me" style="color:#3a4ca8;"><span> &nbsp;로그 아웃 </span> </a>
+			                  </c:if>
+	                  	</li>
+	          	</div>
             </div>
         </div>
-    <div class="container">
-            <div class="inner-header">
-               <div class="col-lg-4 col-md-6 w-50 mx-auto">
-                        <div class="logo">
+
+   			 <div class="container">
+	            <div class="inner-header">
+               		<div class="col-lg-4 col-md-10 w-50 mx-auto">
+                        <div class="logo mb-7 mp-7">
                             <a href="./main.co">
-                                <img src="bootstrap/img/logo.png" alt="" width="230px" height="70px" align="middle">
+                                <img src="bootstrap/img/logo.png" alt="로고" width="230px" height="70px" align="middle">
                             </a> 
                         </div>
                     </div>
-                   
                 </div>
-            </div>
+	          </div>
             
-          <div class="ht-right" align="right">
-                    <li><c:if test="${empty sessionScope.loginfo}">
-                     <a href="<%=contextPath%>/meLogin.me"><span
-                        class="glyphicon glyphicon-log-in"> 로그인 </span> </a>
-                  </c:if> <c:if test="${not empty sessionScope.loginfo}">
-                     <a href="<%=contextPath%>/logout.me"><span
-                        class="glyphicon glyphicon-log-in"> 로그 아웃 </span> </a>
-                  </c:if></li>
-          </div>
+         
        
         <div class="nav-item">
             <div class="container">
@@ -199,8 +168,7 @@
                     <ul>
                         <li class="active"><a href="./main.co">메인</a></li>
           
-                        
-                        <li><a href="#">마이 페이지</a></li>
+                        <li><a href="${contextPath }/mypage.me">마이 페이지</a></li>
                         <li><a href="#">오늘의 기록</a></li>
                         <li><a href="#">&emsp;식단&emsp;</a>
                            <ul class="dropdown">
@@ -210,16 +178,16 @@
                         </li>
                         <li><a href="#">&emsp;운동&emsp;</a>
                            <ul class="dropdown">
-                           <li><a href="#">기록</a></li>
+                           <li><a href="${contextPath}/exRecord.ex">기록</a></li>
                             <li><a href="#">통계</a></li>
                            </ul>
                         </li>
                         
                         <li><a href="<%=contextPath%>/boList.bo">커뮤니티</a></li>
                         <li><a href="<%=contextPath%>/qnaList.qa">Q & A </a></li>
-                       
+                        
                      </ul>
-                   </nav>
+                  </nav>
                 <div id="mobile-menu-wrap"></div>
             </div>
         </div>

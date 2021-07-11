@@ -3,5 +3,46 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="MapperExercise">
-
+	<select id="selectTimeData" parameterType="Map" resultType="MyExerciseMemory">
+		select * from exercise_memory where email = #{email} and regdate = #{regdate}
+	</select>
+	
+	<insert id="insertExMemory" parameterType="MyExerciseMemory">
+		<selectKey keyProperty="em_seq" resultType="Integer" order="BEFORE">
+			select em_seq.nextval from dual
+		</selectKey>
+		insert into exercise_memory (em_seq, email, regdate)
+		values 
+		(#{em_seq}, #{email}, #{regdate})
+	</insert>
+	
+	<select id="selectExList" resultType="MyExercise">
+		select * from exercise
+	</select>
+	
+	<insert id="insertRelation" parameterType="MyExerciseRelation">
+		insert into exercise_relation (ex_seq, em_seq, how)
+		values
+		(#{ex_seq}, #{em_seq}, #{how})
+	</insert>
+	
+	<update id="plusCalorie" parameterType="Map"> 
+		update exercise_memory set total_calorie = total_calorie + #{total_calorie} where em_seq = #{em_seq}
+	</update>
+	
+	<select id="exJoinList" parameterType="Integer" resultType="MyExJoin">
+		select k.ename, k.METs, k.how, k.ex_seq, k.em_seq, m.total_calorie
+		from (select e.ename, e.METs, r.how, r.ex_seq, r.em_seq
+		from exercise e inner join exercise_relation r
+		on e.ex_seq = r.ex_seq) k inner join exercise_memory m
+		on k.em_seq = m.em_seq where k.em_seq = #{em_seq}
+	</select>
+	
+	<delete id="deleteEr" parameterType="Map">
+		delete from exercise_relation where em_seq = #{em_seq} and ex_seq = #{ex_seq}
+	</delete>
+	
+	<update id="minusCalorie">
+		update exercise_memory set total_calorie = total_calorie - #{calorie} where em_seq = #{em_seq}
+	</update>
 </mapper>

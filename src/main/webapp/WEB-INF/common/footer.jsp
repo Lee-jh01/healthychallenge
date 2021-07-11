@@ -29,7 +29,7 @@
                 </div>
                 <div class="col-lg-4 offset-lg-1">
                     <div class="footer-widget">
-                        <h5>Information</h5>
+                        <h5>정보</h5>
                         <ul>
                             <li><a href="#">About Us</a></li>
                             <li><a href="#">개인정보 처리 방침</a></li>
@@ -40,11 +40,11 @@
 
                 <div class="col-lg-4">
                     <div class="newslatter-item">
-                        <h5>Join Our Newsletter Now</h5>
-                        <p>Get E-mail updates about our latest shop and special offers.</p>
+                        <h5>뉴스레터를 구독하세요</h5>
+                        <p>daily health 최신 소식을 전해드립니다</p>
                         <form action="#" class="subscribe-form">
-                            <input type="text" placeholder="Enter Your Mail">
-                            <button type="button">Subscribe</button>
+                            <input type="text" placeholder="이메일을 입력하세요">
+                            <button type="button">신청</button>
                         </form>
                     </div>
                 </div>
@@ -56,11 +56,8 @@
                     <div class="col-lg-12">
                         <div class="copyright-text">
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | 강병모 손민아 이정희 <i class="fa fa-heart-o" aria-hidden="true"></i> 화이팅
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        </div>
-                        <div class="payment-pic">
-                            <img src="bootstrap/img/payment-method.png" alt="">
                         </div>
                     </div>
                 </div>

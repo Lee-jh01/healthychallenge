@@ -19,5 +19,13 @@
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/exercise/" />
 		<beans:property name="suffix" value=".jsp" />
-	</beans:bean>		
+	</beans:bean>	
+	
+	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver" id="beanNameViewResolver">
+		<beans:property value="0" name="order"/>
+	</beans:bean>
+
+	<beans:bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" id="jsonView">
+		<beans:property value="text/html;chatset=UTF-8" name="contentType"/>
+	</beans:bean>	
 </beans:beans>

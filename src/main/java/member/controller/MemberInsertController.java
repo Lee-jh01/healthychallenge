@@ -93,6 +93,16 @@ public class MemberInsertController extends SuperClass {
 				// 권한 상태 0 으로 바꿔주기
 				member.setAuthstatus("0");
 				
+				// 몸무게, 키 넣어주기
+				if(member.getGender() == 1) {
+					//남자
+					member.setHeight(175);
+					member.setWeight(67.5);
+				}else {
+					//여자
+					member.setHeight(162);
+					member.setWeight(52.3);
+				}
 				// 회원가입!
 				System.out.println(member);
 				this.mdao.insertData(member);

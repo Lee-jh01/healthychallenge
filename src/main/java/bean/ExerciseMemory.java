@@ -10,25 +10,6 @@ public class ExerciseMemory {
 	
 	private double total_calorie;  //총칼로리
 
-	
-	public ExerciseMemory(int em_seq, String email, String regdate, double total_calorie) {
-		super();
-		this.em_seq = em_seq;
-		this.email = email;
-		this.regdate = regdate;
-		this.total_calorie = total_calorie;
-	}
-	
-	public ExerciseMemory() {
-		
-	}
-
-	@Override
-	public String toString() {
-		return "ExerciseMemory [em_seq=" + em_seq + ", email=" + email + ", regdate=" + regdate + ", total_calorie="
-				+ total_calorie + "]";
-	}
-
 	public int getEm_seq() {
 		return em_seq;
 	}
@@ -59,6 +40,24 @@ public class ExerciseMemory {
 
 	public void setTotal_calorie(double total_calorie) {
 		this.total_calorie = total_calorie;
+	}
+
+	@Override
+	public String toString() {
+		return "ExerciseMemory [em_seq=" + em_seq + ", email=" + email + ", regdate=" + regdate + ", total_calorie="
+				+ total_calorie + "]";
+	}
+
+	public ExerciseMemory(int em_seq, String email, String regdate, double total_calorie) {
+		super();
+		this.em_seq = em_seq;
+		this.email = email;
+		this.regdate = regdate;
+		this.total_calorie = total_calorie;
+	}
+
+	public ExerciseMemory() {
+		// TODO Auto-generated constructor stub
 	}
 
 }

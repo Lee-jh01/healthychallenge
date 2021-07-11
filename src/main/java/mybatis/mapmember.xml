@@ -45,12 +45,12 @@
 	<update id="searchPassword" parameterType="Map">
 		update member set password = #{key} where email = #{email} and birth = #{birth} and authstatus = '1'
 	</update>
+	
+	<update id="updateStatus" parameterType="Map">
+		update member set weight = #{weight}, height = #{height} where email = #{email}
+	</update>
 
 <!--  
-	<insert id="InsertData" parameterType="MyMember">
-		insert into member(id, name, password, salary, hiredate, gender, hobby, job, zipcode, address1, address2, mpoint) 
-		values(#{id}, #{name}, #{password}, #{salary}, to_date(#{hiredate}, 'yyyy/MM/dd'), #{gender}, #{hobby}, #{job}, #{zipcode}, #{address1}, #{address2},#{mpoint})
-	</insert>
 	
 	
 	<update id="UpdateData" parameterType="MyMember">

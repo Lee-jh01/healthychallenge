@@ -1,12 +1,16 @@
 package dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import bean.CoComment;
+import bean.Meal;
+import bean.MealMemory;
 import bean.MyFood;
 
 @Component("fdao")
@@ -35,5 +39,38 @@ public class MealDao {
 
 	public int insertMyFood(MyFood bean) {
 		return this.abcd.insert(namespace+"insertMyFood",bean);
+	}
+
+	public Meal selectTimeData(String email, String time, String regdate) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("email", email);
+		map.put("time", time);
+		map.put("regdate", regdate);
+		return this.abcd.selectOne(namespace+"selectTimeData",map);
+	}
+
+	public int insertTimeData(Meal meal) {
+		return this.abcd.insert(namespace+"insertTimeData",meal);
+	}
+
+	public int insertMealMemory(MealMemory memory) {
+		System.out.println(memory);
+		return this.abcd.insert(namespace+"insertMealMemory", memory);
+	}
+
+	public int updateTotalCalorie(int meal_seq) {
+		return this.abcd.update(namespace+"updateTotalCalorie", meal_seq);
+	}
+
+	public Meal selectMealByPK(int meal_seq) {
+		return this.abcd.selectOne(namespace+"selectMealByPK", meal_seq);
+	}
+
+	public List<MealMemory> selectMealMemoryList(int meal_seq) {
+		 return this.abcd.selectList(namespace+"selectMealMemoryList", meal_seq);
+	}
+
+	public int deleteMealMemory(int meal_seq) {
+		return this.abcd.delete(namespace+"deleteMealMemory", meal_seq);
 	}
 }

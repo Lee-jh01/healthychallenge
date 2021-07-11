@@ -24,4 +24,40 @@
 		values 
 		(mf_seq.nextval, #{email}, #{food_name}, #{serving_wt}, #{calorie}, #{carbohydrate}, #{protein}, #{fat}, #{Na} )	
 	</insert>
+	
+	<select id="selectTimeData" parameterType = "Map" resultType="Meal">
+		select * from meal where email = #{email} and time = #{time} and regdate = #{regdate}
+	</select>
+	
+	<insert id="insertTimeData" parameterType="Meal">
+		<selectKey keyProperty="meal_seq" resultType="Integer" order="BEFORE">
+			select meal_seq.nextval from dual
+		</selectKey>
+		insert into meal (meal_seq, email, regdate, time, total_calorie)
+		values
+		(#{meal_seq}, #{email}, #{regdate}, #{time}, 0.0)
+	</insert>
+	
+	<insert id="insertMealMemory" parameterType="MyMealMemory">
+		insert into meal_memory (mm_seq, meal_seq, how, food_name, serving_wt, calorie, carbohydrate, protein, na, fat)
+		values 
+		(mm_seq.nextval, #{meal_seq}, #{how}, #{food_name}, #{serving_wt}, #{calorie}, #{carbohydrate}, #{protein}, #{Na}, #{fat})
+	</insert>
+
+	<update id="updateTotalCalorie" parameterType="Integer">
+		update meal set total_calorie = (select sum(calorie*how) as totalcalorie from meal_memory where meal_seq = #{meal_seq}) where meal_seq = #{meal_seq}
+	</update>
+	
+	<select id="selectMealByPK" parameterType="Integer" resultType = "Meal">
+		select * from meal where meal_seq = #{meal_seq}
+	</select>
+	
+	<select id="selectMealMemoryList" parameterType="Integer" resultType="MyMealMemory">
+		select * from meal_memory where meal_seq = #{meal_seq}
+	</select>
+	
+	<delete id="deleteMealMemory">
+		delete from meal_memory where meal_seq = #{meal_seq}
+	</delete>
+
 </mapper>

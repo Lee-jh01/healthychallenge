@@ -34,7 +34,7 @@
                 <div class="col-lg-8 offset-lg-2">
                     <div class="register-form">  
                         <h2>회원가입</h2>
-                        <form action="${contextPath}/insert.me" method="post" enctype="multipart/form-data">
+                        <form action="${contextPath}/insert.me" method="post" enctype="multipart/form-data" autocomplete='off'>
                             <div class="group-input"> 
                                 <label for="email">이메일 *</label>
                                 <input type="text" name="email" id="email" placeholder="abc@healty.com">
