@@ -4,4 +4,29 @@
 
 <mapper namespace="MapperExercise">
 
+<select id="SelectDate" resultType="MyExerciseMemory">
+select * from exercise_memory where email = #{email} and regdate between #{beforeDate} and #{regdate} ORDER BY regdate asc
+</select>
+
+<select id="selectTimeData" parameterType="Map" resultType="MyExerciseMemory">
+		select * from exercise_memory where email = #{email} and regdate = #{regdate}
+	</select>
+	
+	<insert id="insertExMemory" parameterType="MyExerciseMemory">
+		<selectKey keyProperty="em_seq" resultType="Integer" order="BEFORE">
+			select em_seq.nextval from dual
+		</selectKey>
+		insert into exercise_memory (em_seq, email, regdate)
+		values 
+		(#{em_seq}, #{email}, #{regdate})
+	</insert>
+	
+	<select id="selectExList" resultType="MyExercise">
+		select * from exercise
+	</select>
+	
+	<select id="selectCalorie" parameterType="Map" resultType="double">
+	select nvl(sum(total_calorie),0) from exercise_memory where email= #{email} and regdate = #{regdate}
+	
+	</select>
 </mapper>
