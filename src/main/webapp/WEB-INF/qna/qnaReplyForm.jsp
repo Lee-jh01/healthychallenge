@@ -21,16 +21,19 @@
 				<c:set var="apppath" value="<%=request.getContextPath()%>" />
 				<form:form modelAttribute="qna" class="form-horizontal" role="form"
 					action="${apppath}/reply.qa" method="post">
-					<input type="text" name="pageNumber"
+					
+					<input type="hidden" name="pageNumber"
 						value="<%=request.getParameter("pageNumber")%>">
-						<input type="text" name="pageSize"
-						value="<%=request.getParameter("pageSize")%>"> <input
-						type="text" name="groupno"
-						value="<%=request.getParameter("groupno")%>"> <input
-						type="text" name="orderno"
+					<input type="hidden" name="pageSize"
+						value="<%=request.getParameter("pageSize")%>"> 
+					<input type="hidden" name="groupno"
+						value="<%=request.getParameter("groupno")%>"> 
+					<input type="hidden" name="orderno"
 						value="<%=request.getParameter("orderno")%>">
-						<input type="text" name="depth"
+					<input type="hidden" name="depth"
 						value="<%=request.getParameter("depth")%>">
+						
+						
 					<div class="form-group">
 						<label class="control-label col-sm-<%=formleft%>" for="email">작성자</label>
 						<div class="col-sm-<%=formright%>">

@@ -201,17 +201,17 @@
           
                         
                         <li><a href="#">마이 페이지</a></li>
-                        <li><a href="#">오늘의 기록</a></li>
+                        <li><a href="${contextPath}/meToday.me">오늘의 기록</a></li>
                         <li><a href="#">&emsp;식단&emsp;</a>
                            <ul class="dropdown">
                            <li><a href="${contextPath}/daily.ml">기록</a></li>
-                            <li><a href="#">통계</a></li>
+                            <li><a href="${contextPath}/mealStats.ml">통계</a></li>
                            </ul>
                         </li>
                         <li><a href="#">&emsp;운동&emsp;</a>
                            <ul class="dropdown">
-                           <li><a href="#">기록</a></li>
-                            <li><a href="#">통계</a></li>
+                           <li><a href="<%=contextPath%>/exRecord.ex">기록</a></li>
+                            <li><a href="<%=contextPath%>/exStats.ex">통계</a></li>
                            </ul>
                         </li>
                         
