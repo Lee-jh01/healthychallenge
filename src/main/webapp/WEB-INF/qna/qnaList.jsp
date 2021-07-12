@@ -54,7 +54,7 @@ ul.pagination.pagination-sm {
 				</div>
 				<input type="hidden" name="mode" id ="mode" value="" >
 				<div class="p-2"><input class="form-control" type="text" id="keyword" name="keyword" placeholder="제목 / 내용 / 작성자"></div>
-				<div class="p-2"><button type="submit" class="btn btn-warning"><i class="fas fa-search pt-2"></i></button></div>
+				<div class="p-2"><button type="submit" class="btn btn-warning"><i class="fa fa-search" aria-hidden="true"></i></button></div>
 			</div>
 		</form>	
 		<!-- 목록 section -->	

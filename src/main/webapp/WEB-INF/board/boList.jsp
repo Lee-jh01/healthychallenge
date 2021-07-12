@@ -56,16 +56,19 @@ ul.pagination.pagination-sm {
 						</button>
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="javascript:search('all');">전체</a>
-							<a class="dropdown-item" href="javascript:search('운동');">운동</a>
-							<a class="dropdown-item" href="javascript:search('식단');">식단</a>
-							<a class="dropdown-item" href="javascript:search('정보공유');">정보공유</a>
+							<a class="dropdown-item" href="javascript:search('식단(정보 공유)');">식단(정보 공유)</a>
+							<a class="dropdown-item" href="javascript:search('식단(후기)');">식단(후기)</a>
+							<a class="dropdown-item" href="javascript:search('운동(후기)');">운동(후기)</a>
+							<a class="dropdown-item" href="javascript:search('운동(정보 공유)');">운동(정보 공유)</a>
+							<a class="dropdown-item" href="javascript:search('자유');">자유</a>
+							<!-- 운동(후기) / 운동(정보 공유) / 식단(정보 공유)/ 식단(후기) / 자유 -->
 						</div>
 					</div>
 				</div>
 				<div class="p-3 mb-0"><p class="mb-0">${pagingStatus }</p></div>
 				<input type="hidden" name="mode" id ="mode" value="" >
 				<div class="p-2"><input class="form-control" type="text" id="keyword" name="keyword" placeholder="제목 / 내용 / 작성자"></div>
-				<div class="p-2"><button type="submit" class="btn btn-warning"><i class="fas fa-search pt-2"></i></button></div>
+				<div class="p-2"><button type="submit" class="btn btn-warning"><i class="fa fa-search" aria-hidden="true"></i></button></div>
 			</div>
 		</form>	
 		<!-- 목록 section -->	
@@ -79,8 +82,8 @@ ul.pagination.pagination-sm {
 			<thead>
 				<tr>
 					<th width="10%">글번호</th>
-					<th width='10%"'>카테고리</th>
-					<th width="45%">제목</th>
+					<th width='15%"'>카테고리</th>
+					<th width="40%">제목</th>
 					<th width="10%" >작성자</th>
 					<th width="15%">작성 일자</th>
 					<th width="10%">조회수</th>

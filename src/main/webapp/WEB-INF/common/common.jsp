@@ -22,7 +22,7 @@
 	<c:set var="whologin" value="0" />
 </c:if>
 <c:if test="${not empty sessionScope.loginfo}">
-	<c:if test="${sessionScope.loginfo.email == 'admin'}">\
+	<c:if test="${sessionScope.loginfo.email == 'admin@naver.com'}">\
 		<!-- 관리자로 로그인한 경우 -->
 		<c:set var="whologin" value="2" />
 	</c:if>
@@ -138,10 +138,10 @@
 	                    <li>
 		                   	 <c:if test="${empty sessionScope.loginfo}">
 		                    	 <a href="<%=contextPath%>/meLogin.me" style="color:#3a4ca8;"><span>
-		                        <i class="fa fa-user"></i> &nbsp;로그인 </span> </a>
+		                       <i class="fa fa-sign-in" aria-hidden="true"></i> &nbsp;로그인 </span> </a>
 			                  </c:if> 
 			                  <c:if test="${not empty sessionScope.loginfo}" >
-			                     <a href="<%=contextPath%>/logout.me" style="color:#3a4ca8;"><span> &nbsp;로그 아웃 </span> </a>
+			                     <a href="<%=contextPath%>/logout.me" style="color:#3a4ca8;"><span><i class="fa fa-sign-out" aria-hidden="true"></i> &nbsp;로그 아웃 </span> </a>
 			                  </c:if>
 	                  	</li>
 	          	</div>

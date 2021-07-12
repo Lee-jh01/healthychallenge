@@ -103,6 +103,8 @@ public class MealStatsController extends SuperClass {
 		str2 += "]";
 		this.mav.addObject("str2", str2);
 		System.out.println("나오는지 확인:" +str2);
+		this.mav.addObject("regdate",regdate);
+		this.mav.setViewName("mealStats");
 		return this.mav;
 
 	}

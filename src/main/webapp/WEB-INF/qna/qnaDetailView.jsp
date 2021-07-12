@@ -45,8 +45,8 @@
  				</div>
  				<div class="d-flex justify-content-end">
  					<span class="font-weigt-lightr">&nbsp;${bean.regdate}&nbsp;&nbsp;</span>
- 					<span class="font-weigt-lightr"><i class="fas fa-user"></i>&nbsp;${bean.email}&nbsp;&nbsp;</span>
- 					<span class="font-weigt-lightr"><i class="fas fa-eye"></i>&nbsp;${bean.readhit}</span>
+ 					<span class="font-weigt-lightr"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;${bean.email}&nbsp;&nbsp;</span>
+ 					<span class="font-weigt-lightr"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;${bean.readhit}</span>
  				</div>
  			</div>
  		 	<div class="card-body">
@@ -125,7 +125,8 @@
 							<c:if test="${sessionScope.loginfo.email != bean.email}">
 								삭제
 							</c:if>
-							
+							&nbsp;&nbsp;&nbsp;
+							<c:if test="${sessionScope.loginfo.email == 'admin@naver.com'}">
 							<td>
 							<c:if test="${bean.depth <3 }">
 								<a href="<%=contextPath%>/reply.qa?qna_seq=${bean.qna_seq}&${requestScope.parameters}&groupno=${bean.groupno}&orderno=${bean.orderno}&depth=${bean.depth}">
@@ -136,6 +137,7 @@
 								답글
 							</c:if>
 						</td>
+						</c:if>
 						</div>
 					</div>
 				<hr>

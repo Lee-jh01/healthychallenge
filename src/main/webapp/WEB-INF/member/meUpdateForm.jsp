@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../common/common.jsp"%>
-
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Insert title here</title>
-
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
 <body>
 	
@@ -18,8 +16,8 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
                         <a href="${contextPath }/main.co"><i class="fa fa-home"></i> 메인</a>
-                         <a href="${contextPath}/meLogin.me">로그인</a>
-                        <span>회원가입</span>
+                         <a href="${contextPath}/mypage.me">마이 페이지</a>
+                        <span>회원정보 수정</span>
                     </div>
                 </div>
             </div>
@@ -33,11 +31,11 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
                     <div class="register-form">  
-                        <h2>회원가입</h2>
-                        <form action="${contextPath}/insert.me" method="post" enctype="multipart/form-data" autocomplete='off'>
+                        <h2>회원정보 수정</h2>
+                        <form action="${contextPath}/update.me" method="post" enctype="multipart/form-data" autocomplete='off'>
                             <div class="group-input"> 
                                 <label for="email">이메일 *</label>
-                                <input type="text" name="email" id="email" placeholder="abc@healty.com">
+                                <input type="text" name="email" id="email" value="${member.email}" readonly>
                                 <div class="check_font" id="email_check"></div>
                             </div>
                             <div class="group-input">
@@ -52,12 +50,12 @@
                             </div>
                             <div class="group-input">
                                 <label for="name">이름 *</label>
-                                <input type="text" name="name" id="name">
+                                <input type="text" name="name" id="name" value="${member.name}">
                                 <div class="check_font" id="name_check"></div>
                             </div>
                             <div class="group-input">
                                 <label for="birth">생년월일 *</label>
-                                <input type="date" name="birth" id="birth">
+                                <input type="date" name="birth" id="birth" value="${member.birth }">
                                 <div class="check_font" id="birth_check"></div>
                             </div>
                             <div class="group-input">
@@ -77,15 +75,17 @@
 							
                             <div class="group-input">
                                 <label for="nickname">닉네임 *</label>
-                                <input type="text" name="nickname" id="nickname">
+                                <input type="text" name="nickname" id="nickname" value="${member.nickname }">
                                 <div class="check_font" id="nickname_check"></div>
                             </div>
                             <div class="group-input">
                                 <label for="abcd">프로필 사진 </label>
                                 <input class="form-control" type="file" name="abcd" id="abcd">
+                                <input type="hidden" name="photo" value="${member.photo}">
+                                <p style="color:blue">현재 사진 파일 : ${member.photo}</p>
                             </div>
                             
-                            <button type="submit" id ="insert_submit" class="site-btn register-btn" disabled="disabled">회원가입</button>
+                            <button type="submit" id ="insert_submit" class="site-btn register-btn" disabled="disabled">회원정보 수정</button>
                         </form>
                         <div class="switch-login">
                             <a href="${contextPath }/meLogin.me" class="or-login">로그인 바로 가기</a>
@@ -185,49 +185,12 @@
 			}
 		 })
 		 
+		  $('input:radio[name=gender]:input[value=' + '${member.gender}' + ']').attr("checked", true);
 		 
-			// 이메일 유효성 검사
-			$(document).on("blur",'#email', function(){
-				var email = $('#email').val();
-				$.ajax({
-					url : '${contextPath}/emailCheck.me?email='+email,
-					type: 'get',
-					dataType : 'text',
-					success : function(data){
-						if (data == '1'){
-							// 1 : 이메일이 중복되었을 때 에러메시지 문구
-							$("#email_check").text("사용중인 이메일 입니다");
-							$("#email_check").css("color", "blue");
-							$("#insert_submit").attr("disabled", true);
-						} else{
-							
-	 						if(emailJ.test(email)){
-								// 0 : 이메일 길이 / 문자열 검사
-								// 이메일 유효성 검사 통과!
-								$('#email_check').text("");
-								$("#insert_submit").attr("disabled",false);
-							
-							} else if(email == ""){
-								// 이메일을 입력하지 않았을 때 !
-								$('#email_check').text("이메일을 입력해주세요 ");
-								$('#email_check').css('color','red');
-								$('#insert_submit').attr("disabled",true);
-							
-							} else{
-								//-- 이메일 형식 **
-								$('#email_check').text("이메일 형식으로 입력해주세요");
-								$('#email_check').css('color','red');
-								$('#insert_submit').attr("disabled",true);
-							} 
-						}
-					},
-					error : function(){
-						console.log("실패");
-					}
-				});
-			}); 
-	 
 	 })// 세팅 끝
+	 
+	 
+
 	</script>
 	
 </body>

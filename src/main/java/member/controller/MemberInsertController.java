@@ -69,7 +69,7 @@ public class MemberInsertController extends SuperClass {
 			
 			try {
 				if(multi.isEmpty()) {
-					member.setPhoto("basicimage.jpg");
+					member.setPhoto("basicimage.png");
 					System.out.println("여기에 들어왔습니다.");
 				}else {
 					// 업로드 폴더에 파일을 업로드 합니다.
@@ -109,7 +109,7 @@ public class MemberInsertController extends SuperClass {
 				
 				// 인증 메일 보내기 메서드
 				mailsender.mailSendWithMemberKey(member.getEmail(), member.getName(), request);
-				mav.setViewName("meLogin");
+				mav.setViewName("meInsertAlert");
 				
 			} catch (IllegalStateException e) {
 				e.printStackTrace();

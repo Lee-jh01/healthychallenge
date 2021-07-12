@@ -55,9 +55,12 @@
                	   	<div class="col-3">
                        <select id="category" name="category" class="form-control">
                           <option value="-" selected="selected">선택하세요
-                          <option value="운동">운동
-                          <option value="식단">식단
-                          <option value="정보공유">정보공유
+                          <option value="식단(정보 공유)">식단(정보 공유)
+                          <option value="식단(후기)">식단(후기)
+                          <option value="운동(후기)">운동(후기)
+                          <option value="운동(정보 공유)">운동(정보 공유)
+                          <option value="자유">자유
+                          <!-- 운동(후기) / 운동(정보 공유) / 식단(정보 공유)/ 식단(후기) / 자유 -->
                        </select>
                      
                    	</div>
@@ -67,7 +70,7 @@
 					</div>
 					<div class="col-3">
 						<input type="text" class="form-control" name="fakeemail" id="fakeemail"
-							placeholder="작성자" value="${sessionScope.loginfo.nickname}(${sessionScope.loginfo.email})" disabled="disabled" />
+							placeholder="작성자" value="${sessionScope.loginfo.nickname}" disabled="disabled" />
 						<input type="hidden" name="email" id="email"
 							value="${sessionScope.loginfo.email}" />								
 					</div>

@@ -68,14 +68,6 @@
 				<fmt:formatDate value="${regdate }" pattern="yyyy-MM-dd" var="reg"/>
 				<input type="hidden" name="regdate" id="regdate" value="${reg }">
 				
-				<!-- 경고 메시지 테스트중 -->
-				<div id = "validation">
-				  <div class="alert alert-danger alert-dismissible fade show">
-				    <button type="button" class="close" data-dismiss="alert">&times;</button>
-				    <strong>알림</strong><span class="err">fff</span>
-				  </div>
-				</div>
-				<!--  -->
 				  
 				<div class="row">
      

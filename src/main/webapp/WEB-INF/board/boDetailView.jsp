@@ -50,8 +50,8 @@
  				</div>
  				<div class="d-flex justify-content-end">
  					<span class="font-weigt-lightr">&nbsp;${bean.regdate}&nbsp;&nbsp;</span>
- 					<span class="font-weigt-lightr"><i class="fas fa-user"></i>&nbsp;${bean.email}&nbsp;&nbsp;</span>
- 					<span class="font-weigt-lightr"><i class="fas fa-eye"></i>&nbsp;${bean.readhit}</span>
+ 					<span class="font-weigt-lightr"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;${bean.email}&nbsp;&nbsp;</span>
+ 					<span class="font-weigt-lightr"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;${bean.readhit}</span>
  				</div>
  			</div>
  		 	<div class="card-body">

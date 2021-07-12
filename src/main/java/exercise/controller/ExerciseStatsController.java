@@ -98,6 +98,8 @@ public class ExerciseStatsController extends SuperClass {
 		}
 		str += "]";
 		this.mav.addObject("str", str);
+		this.mav.addObject("regdate",regdate);
+		this.mav.setViewName("exStats");
 		System.out.println("나오는지 확인:" +str);
 		return this.mav;
 	}

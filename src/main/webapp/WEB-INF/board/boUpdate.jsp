@@ -30,14 +30,6 @@
 			$('#category').val('${bean.category}');
 		})
 		
-		
-/* 		validation check 잠시 보류
- 
- 		function check(){
-			var alertt = document.getElementById("validation");
-			var subjectval = document.getElementById('subject').value;
-			var contentval = document.getElementById('review_editor').value;
-		} */
 	</script>
 
 </head>
@@ -71,14 +63,6 @@
 				<fmt:formatDate value="${regdate }" pattern="yyyy-MM-dd" var="reg"/>
 				<input type="hidden" name="regdate" id="regdate" value="${reg }">
 				
-				<!-- 경고 메시지 테스트중 -->
-				<div id = "validation">
-				  <div class="alert alert-danger alert-dismissible fade show">
-				    <button type="button" class="close" data-dismiss="alert">&times;</button>
-				    <strong>알림</strong><span class="err">fff</span>
-				  </div>
-				</div>
-				<!--  -->
 				  
 				<div class="row">
                    	<div class="col-1">
@@ -88,11 +72,13 @@
                	   	<div class="col-3">
                        <select id="category" name="category" class="form-control">
                           <option value="-" selected="selected">선택하세요
-                          <option value="운동">운동
-                          <option value="식단">식단
-                          <option value="정보공유">정보공유
+                          <option value="식단(후기)">식단(후기)
+                          <option value="식단(정보 공유)">식단(정보 공유)
+                          <option value="운동(후기)">운동(후기)
+                          <option value="운동(정보 공유)">운동(정보 공유)
+                          <option value="자유">자유
                        </select>
-                     
+                      <!-- 운동(후기) / 운동(정보 공유) / 식단(정보 공유)/ 식단(후기) / 자유 -->
                    	</div>
                   	<div class="col-1">
 						<!-- <label class="form-control-label" for="email">작성자</label> -->
@@ -100,7 +86,7 @@
 					</div>
 					<div class="col-3">
 						<input type="text" class="form-control" name="fakeemail" id="fakeemail"
-							placeholder="작성자" value="${sessionScope.loginfo.nickname}(${sessionScope.loginfo.email})" disabled="disabled" />
+							placeholder="작성자" value="${sessionScope.loginfo.nickname}" disabled="disabled" />
 						<input type="hidden" name="email" id="email"
 							value="${sessionScope.loginfo.email}" />								
 					</div>
@@ -121,15 +107,7 @@
 				<br>
 				<div class="form-group">
 					<div align="center">
-<<<<<<< HEAD
-						<input type="submit" value="수정하기">
-						<!--  <button class="btn btn-warning" type="button" onclick="javascript:check();">수정하기</button>-->
-=======
-						<!--<button class="btn btn-warning" type="button">수정하기</button>-->						
-						<button class="btn btn-default" type="submit">수정하기</button>
->>>>>>> refs/heads/master
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<button class="btn btn-wanring" type="reset">취소</button>
+						<input class="btn btn-warning form-control" type="submit" value="수정하기">
 					</div>
 				</div>
 			</form>

@@ -92,12 +92,12 @@
                 <div class="col-lg-9 order-1 order-lg-2">
                 
                 <div class="row">
-					   			&nbsp;&nbsp;&nbsp;&nbsp;
-						   		<h2 id="dateValue" class="mb-0"></h2>
-						   		&nbsp;&nbsp;&nbsp;&nbsp;
-						   		<input type="hidden" name="regdate" id="datepicker">
-					   		</div>
-                      
+		   			&nbsp;&nbsp;&nbsp;&nbsp;
+			   		<h2 id="dateValue" class="mb-0"></h2>
+			   		&nbsp;&nbsp;&nbsp;&nbsp;
+			   		<input type="hidden" name="regdate" id="datepicker">
+		   		</div>
+
       <div id="chart_div" style="width: 900px; height: 550px; "></div> 
  	 	<div style="background-color: white;">
   	

@@ -65,6 +65,7 @@ public class TodayController {
 		
 		mav.addObject("fcal", fcal);
 		mav.addObject("ecal", ecal);
+		mav.addObject("regdate",regdate);
 		
 		mav.setViewName("meToday");
 			return mav;

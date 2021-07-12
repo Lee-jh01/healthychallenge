@@ -80,4 +80,20 @@ public class MemberDao {
 		map.put("email", email);
 		return this.abcd.update(namespace+"updateStatus",map);
 	}
+
+	public int updateMember(Member member) {
+		return this.abcd.update(namespace+"updateMember",member);
+	}
+
+	public int deleteMember(String email) {
+		return this.abcd.delete(namespace+"deleteMember",email);
+	}
+
+	public Member passwordCheck(String email, String password) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("email",email);
+		map.put("password", password);
+		return this.abcd.selectOne(namespace+"passwordCheck",map);
+	}
+
 }

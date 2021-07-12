@@ -44,7 +44,7 @@
 
           var materialOptions = {
             chart: {
-              title: '오늘의 기록'
+              title: '하루 섭취, 소비 칼로리를 한눈에 확인하세요 :)'
             },
             hAxis: {
               title: 'Total Population',
@@ -105,7 +105,9 @@
 						   		&nbsp;&nbsp;&nbsp;&nbsp;
 						   		<input type="hidden" name="regdate" id="datepicker">
 					   		</div>
-                
+                <br>
+                <br>
+                <br>
       <div id="chart_div" style="width: 900px; height: 550px; "></div>
   
   </div>

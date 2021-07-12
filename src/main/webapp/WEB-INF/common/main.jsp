@@ -10,7 +10,7 @@
 	<section>
 		<div class="container" align="center">
         	<img src="bootstrap/img/hero1.png" style="height: 600px; width : 2000px;">
-			<button class="btn btn-danger" onclick="location.href='{contextPath}/insert.me'" style="width:50%;height:50px;">참여 하기</button>
+			<button class="btn btn-danger" onclick="location.href='${contextPath}/insert.me'" style="width:50%;height:50px;">참여 하기</button>
 			<br>
 			<br>
 		</div>

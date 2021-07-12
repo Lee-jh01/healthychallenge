@@ -65,12 +65,12 @@ public class MemberMailSendService {
 		int cnt = mdao.GetKey(email, key); 
 		System.out.println("GeyKey 결과 : "+cnt);
 		MimeMessage mail = mailSender.createMimeMessage();
-		String htmlStr = "<h2>안녕하세요. '작심챌린지' 입니다!</h2><br><br>" 
+		String htmlStr = "<h2>안녕하세요. 'dailyHealth' 입니다!</h2><br><br>" 
 				+ "<h3>" + name + "님</h3>" + "<p>인증하기 버튼을 누르시면 로그인을 하실 수 있습니다 : " 
 				+ "<a href='http://localhost:8086" + request.getContextPath() + "/alterStatus.me?email="+ email +"&key="+key+"'>인증하기</a></p>"
 				+ "(혹시 잘못 전달된 메일이라면 이 이메일을 무시하셔도 됩니다)";
 		try {
-			mail.setSubject("[본인인증] '작심챌린지' 회원가입 인증메일입니다", "utf-8");
+			mail.setSubject("[본인인증] 'dailyHealth' 회원가입 인증메일입니다", "utf-8");
 			mail.setText(htmlStr, "utf-8", "html");
 			mail.addRecipient(RecipientType.TO, new InternetAddress(email));
 			mailSender.send(mail);

@@ -49,26 +49,28 @@
 	<update id="updateStatus" parameterType="Map">
 		update member set weight = #{weight}, height = #{height} where email = #{email}
 	</update>
-
-<!--  
 	
-	
-	<update id="UpdateData" parameterType="MyMember">
+	<update id="updateMember" parameterType="MyMember">
 		update member set		
-		name = #{name},
 		password = #{password},
-		salary = #{salary},
-		hiredate = #{hiredate},
+		name = #{name},
+		birth = #{birth},
 		gender = #{gender},
-		hobby = #{hobby},
-		job = #{job},
-		zipcode = #{zipcode},
-		address1 = #{address1},
-		address2 = #{address2},	
-		mpoint = #{mpoint}
-		where id = #{id}
+		nickname = #{nickname},
+		photo = #{photo},
+		weight = #{weight},
+		height = #{height}
+		where email = #{email}
 	</update>
-			
+	
+	<delete id="deleteMember" parameterType="String">
+		delete from member where email = #{email}
+	</delete>
+	
+	<select id="passwordCheck" parameterType="Map" resultType="MyMember">
+		select * from member where email = #{email} and password = #{password}
+	</select>
+<!--  		
 	<select id="SelectDataList" resultType="MyMember">
 		select id, name, password, salary, hiredate, gender, hobby, job, zipcode, address1, address2, mpoint
 		from member

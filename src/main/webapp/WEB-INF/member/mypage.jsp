@@ -36,6 +36,21 @@
 			})
 		}
 		
+		function deleteMember(){
+			if(confirm('정말 삭제하시겠습니까?')){
+			  $.ajax({
+				 url : '${contextPath}/deleteMember.me',
+				 data : {'email' : '${newmember.email}'},
+				 type : 'post',
+				 success : function(data){
+					location.href = '${contextPath}/meLogin.me' 
+				 }
+			 })
+			}else{
+				
+			}
+		}
+		
 	</script>
 </head>
 <body>
@@ -61,7 +76,7 @@
 			<div class="shadow p-4 mb-4 bg-white" align="center">
 			 <h2 >회원 정보</h2>
 			 <br>
-			 <img class="ml-4 mr-4 img-fluid float-left rounded-circle" src="${contextPath}/picture/${newmember.photo}" alt="Chania" width="200" height="100"> 
+			 <img class="ml-4 mr-4 img-fluid float-left rounded-circle" src="${contextPath}/picture/${newmember.photo}" alt="Chania" width="250" height="150"> 
 			 <div align="left" class="ml-10">
 			 <p><span class="font-weight-bolder">이메일 : </span>&nbsp;${newmember.email}</p>
 			 <p><span class="font-weight-bolder">이름 : </span>&nbsp;${newmember.name}  &nbsp;&nbsp;&nbsp;</p>
@@ -77,8 +92,8 @@
 			  </p>
 			</div>
 			<div align = "right">
-				<input type="button" class="btn btn-outline-secondary" value="수정">
-				<input type="button" class="btn btn-dark" value="탈퇴">
+				<input type="button" class="btn btn-outline-secondary" value="수정" onclick="location.href='${contextPath}/update.me?'">
+				<input type="button" class="btn btn-dark" value="탈퇴" onclick="javascript:deleteMember();">
 			</div>
 			</div>
 			<br>
@@ -97,8 +112,6 @@
 				<input type="button" class="btn btn-outline-warning" value="변경하기" onclick="changeModal();">
 			</div>
 			
-			<div class="shadow p-4 mb-4 bg-white">Default shadow</div>
-			<div class="shadow p-4 mb-4 bg-white">Default shadow</div>
 		</div>
 	</div>
     </div>

@@ -48,16 +48,16 @@ public class MemberLoginController extends SuperClass{
 		// 만일 유효성 검사에 문제가 있으면, false로 변경합니다.
 		boolean isCheck = true ; // 기본 값은 true입니다.
 		
-		if (email.length() < 4 || email.length() > 30) {
-			mav.addObject("erremail", "메일주소는 4자리 이상 10자리 이하이어야 합니다.");
-			isCheck = false ;
-		}
-		
-		if (password.length() < 4 || password.length() > 10) {			
-			mav.addObject("errpwd", "비밀 번호는 4자리 이상 10자리 이하이어야 합니다.");
-			isCheck = false ;
-		}		
-		System.out.println("ischeck!! : "+isCheck);
+//		if (email.length() < 4 || email.length() > 30) {
+//			mav.addObject("erremail", "메일주소는 4자리 이상 10자리 이하이어야 합니다.");
+//			isCheck = false ;
+//		}
+//		
+//		if (password.length() < 4 || password.length() > 10) {			
+//			mav.addObject("errpwd", "비밀 번호는 4자리 이상 10자리 이하이어야 합니다.");
+//			isCheck = false ;
+//		}		
+//		System.out.println("ischeck!! : "+isCheck);
 		
 		
 		if (isCheck == true) { // 유효성 검사에 문제가 없습니다.	
